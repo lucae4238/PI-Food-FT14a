@@ -3,6 +3,9 @@ export const GET_TYPES = "GET_TYPES";
 export const ADD_RECIPE = "ADD_RECIPE";
 export const GET_DETAILS = "GET_DETAILS";
 export const SET_LOADING = "SET_LOADING";
+export const SET_REFERENCE = "SET_REFERENCE";
+export const PAGE_REFERENCE = "PAGE_REFERENCE";
+
 
 export const getRecipes = (name, page = 0) => {
   return function (dispatch) {
@@ -13,7 +16,7 @@ export const getRecipes = (name, page = 0) => {
           type: GET_RECIPES,
           payload: json,
         });
-      });
+      })
   };
 };
 
@@ -46,5 +49,19 @@ export const getTypes = () => {
 export const setLoading = () => {
   return {
     type: SET_LOADING,
+  };
+};
+
+export const setReference = (name) => {
+  return {
+    type: SET_REFERENCE,
+    payload: name,
+  };
+};
+
+export const setPageReference = (num) => {
+  return {
+    type: PAGE_REFERENCE,
+    payload: num,
   };
 };

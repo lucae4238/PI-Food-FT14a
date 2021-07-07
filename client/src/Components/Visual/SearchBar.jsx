@@ -1,29 +1,30 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes, setLoading } from "../Redux/actions";
+import { getRecipes, setLoading, setReference } from "../Redux/actions";
+
 
 
  const SearchBar=()=> {
   const recipes = useSelector((state) => state.recipesLoaded);
-  
+
+  let timer =  () => setTimeout(() => dispatch(setLoading()), 2000)
   const dispatch = useDispatch();
   const [input, setInput] = useState('')
 
-  const timer =  () => setTimeout(() => dispatch(setLoading()), 2000)
   
   const handleInput = (e) => {
       setInput(e.target.value);
   };
  
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
       e.preventDefault();
       if(input !== ''){
           dispatch(setLoading())
           dispatch(getRecipes(input))
+          dispatch(setReference(input))
           setInput('')
         timer()
-          console.log(`recipes`, recipes)
       } 
 
   }
@@ -33,7 +34,7 @@ import { getRecipes, setLoading } from "../Redux/actions";
     return (
     <Container>
       <form onSubmit={handleSubmit}>
-        <Search type="text" placeholder="LARGO de busqueda" name='input' onChange={handleInput} value={input}/>
+        <Search type="text" placeholder="Search recipes" name='input' onChange={handleInput} value={input}/>
         <Hidden type="submit" tabindex="-1" />
       </form>
     </Container>

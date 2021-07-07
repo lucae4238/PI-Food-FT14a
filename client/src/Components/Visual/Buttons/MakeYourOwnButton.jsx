@@ -14,7 +14,7 @@ const MakeYourOwn = () => {
 export default MakeYourOwn
 
 let Container = styled.div`
-
+display: inline-block;
 color: white;
 border: 1px solid black;
 background-color: purple;

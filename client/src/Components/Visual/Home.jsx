@@ -4,9 +4,17 @@ import MakeYourOwn from './Buttons/MakeYourOwnButton'
 import SearchBar from './SearchBar'
 import { Link } from "react-router-dom";
 import RecipeCard from './Recipes/RecipeCard';
+import { useSelector } from 'react-redux';
+
 
 
 export const Home = () => {
+
+    const recipes = useSelector((state) => state.recipesLoaded);
+    const loading = useSelector( state => state.loading)
+
+
+
     return (
         <Container>
             {/* CUANDO SE USE REDUX HAY QUE PONER EL FIND COMO VARIABLE, SI ES NULO EL SEARCH QUE SEA FIND */}
@@ -16,18 +24,20 @@ export const Home = () => {
         </Link>
         <SearchBar/>
         <CardContainer>
-
-        <RecipeCard title='title'/>
-        <RecipeCard title='title2'/>
-        <RecipeCard title='title2'/>
-        <RecipeCard title='title2'/>
-        <RecipeCard title='title2'/>
-        <RecipeCard title='title2'/>
-        <RecipeCard title='title2'/>
-        <RecipeCard title='title2'/>
-        <RecipeCard title='title2'/>
-        </CardContainer>
-        {/* map recipe list  => tarjetas hasta el 9 */}
+        {
+            loading === true ? <p>loading...</p> : 
+        
+        
+        
+            
+                recipes.map( r => (
+                    <div key={r.id}>
+                        <RecipeCard name={r.name} img={r.image}/>
+                    </div>
+                ))
+            
+            }
+            </CardContainer> 
         </Container>
     )
 }

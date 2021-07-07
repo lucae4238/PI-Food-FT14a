@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const RecipeCard = ({title}) => {
+const RecipeCard = ({name, img}) => {
     return (
         <Container>
-            <h1>{title}</h1>
+            <h5>{name}</h5>
+            <Img src={img} alt='image'/>
+
 
 
         </Container>
@@ -20,6 +22,13 @@ height: 15em;
 
 
 `;
+
+let Img = styled.img`
+margin: 1em;
+border-radius: 1em;
+max-width: 8em;
+`;
+
 
 
 export default RecipeCard

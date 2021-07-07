@@ -31,7 +31,7 @@ let formated= Array.isArray(diets) ? diets: [diets]
                 [Op.in] : formated
             }
         }
-    })
+    }) 
  await newRecipe.setDiets(matchingDiets)
 
     res.status(201).json(newRecipe)

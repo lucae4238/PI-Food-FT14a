@@ -11,7 +11,7 @@ router.get('/', async function(req,res) {
     let {name,page} = req.query;
     //page is for paged results, marks wich page must be shown
     let num= page !== undefined ? page : 0
-
+if(!name || name ==='' || name === ' ') return res.status(404).json({message: 'must send a valid name in query'})
     try {
         
     
@@ -70,8 +70,7 @@ router.get('/:id/', async function(req,res){
     return apiResult.length === 0 ? res.json({mesage: 'error finding with id'}) : res.json(apiResult)
 })
 
-//234234234
-//sdf87 -sdfad78sdf-asdf87
+
 
 
 

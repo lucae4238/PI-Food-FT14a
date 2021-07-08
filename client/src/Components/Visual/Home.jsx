@@ -15,8 +15,6 @@ export const Home = () => {
   const recipes = useSelector((state) => state.recipesLoaded);
   const loading = useSelector((state) => state.loading);
   const reference = useSelector((state) => state.reference);
-  const dispatch = useDispatch();
-  const history = useHistory();
 
   let title =
     reference === ""
@@ -37,7 +35,7 @@ export const Home = () => {
         ) : (
           recipes.map((r) => (
             <div key={r.id}>
-              <RecipeCard name={r.name} img={r.image} id={r.id}/>
+              <RecipeCard name={r.name} img={r.image} id={r.id} diets={r.diets}/>
             </div>
           ))
         )}

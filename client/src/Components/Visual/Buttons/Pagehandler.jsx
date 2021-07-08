@@ -4,6 +4,8 @@ import Current from "../../Functional/PageRef/current";
 import NextPage from "../../Functional/PageRef/nextPage";
 import PrevPage from "../../Functional/PageRef/prevPage";
 import { setLoading } from "../../Redux/actions";
+import Container from "../../Styles/buttons";
+
 
 const Pagehandler = () => {
   const pageReference = useSelector((state) => state.pageReference);
@@ -15,7 +17,7 @@ const Pagehandler = () => {
     return (
       <>
         {pageReference < 1 ? (
-          <></>
+          <Container>No prev</Container>
         ) : (
           <PrevPage
             timer={timer}

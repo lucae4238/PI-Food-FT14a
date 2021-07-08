@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const RecipeCard = ({ name, img, id }) => {
+const RecipeCard = ({ name, img, id ,diets}) => {
   return (
     <Container
       style={{
@@ -12,7 +12,11 @@ const RecipeCard = ({ name, img, id }) => {
       <Link to={`/recipe/${id}`}>
         <h3>{name}</h3>
       </Link>
-      <h4>{id}</h4>
+
+      {
+            diets.map((i) => (<h4>{i}</h4>))
+            
+        }
     </Container>
   );
 };

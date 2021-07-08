@@ -3,7 +3,9 @@ import "./App.css";
 import Form from "./Form";
 import GetStarted from "./GetStarted";
 import { Home } from "./Home";
+import DetailsRecipes from "./Recipes/DetailsRecipes";
 import Top from "./Top";
+
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
       <Route exact path="/" component={GetStarted}/>
       <Route exact path="/home" component={Home} />
       <Route path="/makeRecipe" component={Form} />
+      <Route path='/recipe/:id' component={DetailsRecipes} />
     </>
   );
 }

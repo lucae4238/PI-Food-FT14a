@@ -1,4 +1,6 @@
-import {  GET_DETAILS, GET_RECIPES, GET_TYPES, PAGE_REFERENCE, SET_LOADING, SET_REFERENCE } from "./actions";
+import sortByName from "../../Sort Functions/Name/SortByName";
+import sortByScore from "../../Sort Functions/Score/SortByScore";
+import {  GET_DETAILS, GET_RECIPES, GET_TYPES, PAGE_REFERENCE, SET_LOADING, SET_REFERENCE, SORT_NAME, SORT_SCORE } from "./actions";
 //FALTA ADD RECIPE
 let initialState = {
   recipesLoaded: [],
@@ -8,6 +10,8 @@ let initialState = {
   reference: '',
   pageReference: 0
 };
+
+
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
@@ -41,6 +45,18 @@ export function reducer(state = initialState, action) {
         return{
           ...state,
           pageReference: action.payload
+        }
+      case SORT_NAME: 
+      console.log('here')
+      return {
+        ...state, 
+        recipesLoaded: sortByName(action.payload, state.recipesLoaded)
+      }
+
+      case SORT_SCORE:
+        return {
+          ...state, 
+          recipesLoaded: sortByScore(action.payload, state.recipesLoaded)
         }
 
     default:

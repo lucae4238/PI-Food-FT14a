@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
+
 const GetStarted = () => {
   return (
     <div>
@@ -9,6 +11,7 @@ const GetStarted = () => {
         <Link to="/home">
           <h4>Get Started</h4>
         </Link>
+        
       </div>
     </div>
   );

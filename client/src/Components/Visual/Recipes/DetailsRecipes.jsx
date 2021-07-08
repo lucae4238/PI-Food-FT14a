@@ -6,13 +6,17 @@ const DetailsRecipes = (props) => {
     const id = props.match.params.id;
     const details = useSelector(state => state.recipeDetails)
     const dispatch = useDispatch()
-    const {name, summary, score, healthScore, steps, diets, dishTypes,image} = details
+    //FALTA STEPS
+    //FALTA STEPS
+    //FALTA STEPS
+    //FALTA STEPS
+    const {name, summary, score, healthScore, diets, dishTypes,image} = details
     
 
     useEffect( () => {
-        dispatch(getDetails(id)).then(() =>
-        console.log(`details`, details))
+        dispatch(getDetails(id))
     }, [])
+    
     return  (
         <>
         <h1>{name}</h1>
@@ -29,7 +33,7 @@ const DetailsRecipes = (props) => {
         </div>
         <h4>Health score: {healthScore}</h4>
         <h4>user score: {score}</h4>
-        <img src={image}/>
+        <img src={image} alt={'recipe'}/>
         <p>{summary}</p>
 
        

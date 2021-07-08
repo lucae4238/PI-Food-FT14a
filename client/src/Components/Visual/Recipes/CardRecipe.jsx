@@ -38,11 +38,6 @@ let Container = styled.div`
   }
 `;
 
-let Img = styled.img`
-  margin: 1em;
-  border-radius: 1em;
-  width: 20em;
-  height: 15em;
-`;
+
 
 export default RecipeCard;

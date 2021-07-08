@@ -7,7 +7,7 @@ border: 1px solid black;
 background-color: purple;
 width:max-content;
 padding: 6px;
-margin: 10em;
+margin: 0;
 height:5em;
 
 h5{

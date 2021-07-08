@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getRecipes, setLoading, setReference } from "../Redux/actions";
 
 
 
  const SearchBar=()=> {
-  const recipes = useSelector((state) => state.recipesLoaded);
 
   let timer =  () => setTimeout(() => dispatch(setLoading()), 2000)
   const dispatch = useDispatch();

@@ -5,6 +5,9 @@ export const GET_DETAILS = "GET_DETAILS";
 export const SET_LOADING = "SET_LOADING";
 export const SET_REFERENCE = "SET_REFERENCE";
 export const PAGE_REFERENCE = "PAGE_REFERENCE";
+export const SORT_NAME = "SORT_NAME";
+export const SORT_SCORE = "SORT_SCORE";
+
 
 
 export const getRecipes = (name, page = 0) => {
@@ -65,3 +68,17 @@ export const setPageReference = (num) => {
     payload: num,
   };
 };
+
+export const sortName = (num) => {
+  return {
+    type: SORT_NAME,
+    payload: num,
+  }
+}
+
+export const sortScore = (num) => {
+  return{
+    type:SORT_SCORE,
+    payload: num,
+  }
+}

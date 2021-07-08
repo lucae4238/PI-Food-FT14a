@@ -3,17 +3,11 @@ import s from "styled-components";
 import MakeYourOwn from "./Buttons/MakeYourOwnButton";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
-import RecipeCard from "./Recipes/CardRecipe";
-import { useSelector, useDispatch } from "react-redux";
-// import PageButton from "./Buttons/PageButton";
-import { useHistory } from "react-router-dom";
-import { setLoading, setPageReference } from "../Redux/actions";
-import Pagehandler from "./Buttons/Pagehandler";
+import { useSelector} from "react-redux";
+import CardContainer from "./CardContainer";
+
 
 export const Home = () => {
-  //   let timer = () => setTimeout(() => dispatch(setLoading()), 2000);
-  const recipes = useSelector((state) => state.recipesLoaded);
-  const loading = useSelector((state) => state.loading);
   const reference = useSelector((state) => state.reference);
 
   let title =
@@ -28,19 +22,7 @@ export const Home = () => {
         <MakeYourOwn />
       </Link>
       <SearchBar />
-
-      <CardContainer>
-        {loading === true ? (
-          <p>loading...</p>
-        ) : (
-          recipes.map((r) => (
-            <div key={r.id}>
-              <RecipeCard name={r.name} img={r.image} id={r.id} diets={r.diets}/>
-            </div>
-          ))
-        )}
-        {loading === true ? <></> : <Pagehandler />}
-      </CardContainer>
+      <CardContainer />
     </Container>
   );
 };
@@ -61,13 +43,3 @@ h1{
 }
 `;
 
-let CardContainer = s.div`
-background-color: green;
-height: max-content;
-display: grid;
-grid-template-columns: 1fr 1fr 1fr ;
-grid-template-rows: 1fr 1fr 1fr ;
-overflow-y: scroll;
-
-
-`;

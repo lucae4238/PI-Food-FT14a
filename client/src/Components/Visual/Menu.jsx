@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import Name from "./Buttons/Filters/Name";
 import "./Menu.css";
 import Score from './Buttons/Filters/Score';
+import DietsDiv from "./DietsDiv";
+import ClearFiltersButton from "./Buttons/Filters/ClearFiltersButton";
 
 const Menu = () => {
   const reference = useRef(null);
@@ -28,9 +30,10 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
-      {recipes.length === 0 ? (<></>) : (<button onClick={onClick} className="menu-trigger"><span>Filter</span></button>)}
+      {recipes.length < 2 ? (<></>) : (<button onClick={onClick} className="menu-trigger"><span>Filter</span></button>)}
       <nav ref={reference} className={`menu ${bool ? "active" : "inactive"}`}>
         <ul>
+          <li>Results: {recipes.length}</li>
           <li>
             <Name />
           </li>
@@ -38,7 +41,12 @@ const Menu = () => {
 
             <Score />
           </li>
-          <li>diets</li>
+          <li>
+            <DietsDiv />
+          </li>
+          <li>
+            <ClearFiltersButton />
+          </li>
         </ul>
 
       </nav>

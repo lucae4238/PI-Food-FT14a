@@ -1,15 +1,16 @@
+import filterByDiet from "../../Sort Functions/Diet/FilterByDiet";
 import sortByName from "../../Sort Functions/Name/SortByName";
 import sortByScore from "../../Sort Functions/Score/SortByScore";
-import {  GET_DETAILS, GET_RECIPES, GET_TYPES, PAGE_REFERENCE, SET_LOADING, SET_REFERENCE, SORT_NAME, SORT_SCORE } from "./actions";
+import {  GET_DETAILS, GET_RECIPES, GET_TYPES, PAGE_REFERENCE, SET_LOADING, SET_REFERENCE, SORT_NAME, SORT_SCORE, FILTER_DIET, CLEAR_FILTERS } from "./actions";
 //FALTA ADD RECIPE
 let initialState = {
   recipesLoaded: [],
+  recipesUnfiltered: [],
   recipeDetails: {},
   dietsLoaded: [],
   loading: false,
   reference: '',
   pageReference: 0,
-  order: ''
 };
 
 
@@ -20,6 +21,7 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         recipesLoaded: action.payload,
+        recipesUnfiltered: action.payload,
         loading:false
       };
     case GET_DETAILS:
@@ -48,6 +50,7 @@ export function reducer(state = initialState, action) {
           ...state,
           pageReference: action.payload
         }
+
       case SORT_NAME: 
       console.log('here')
       return {
@@ -63,6 +66,17 @@ export function reducer(state = initialState, action) {
           recipesLoaded: sortByScore(action.payload, state.recipesLoaded),
           pageReference: 0
         }
+      case FILTER_DIET: 
+      return {
+        ...state, 
+        recipesLoaded: filterByDiet(action.payload, state.recipesLoaded),
+        pageReference: 0
+      }
+      case CLEAR_FILTERS:
+      return { 
+        ...state,
+        recipesLoaded: state.recipesUnfiltered
+      }
 
     default:
       return state;

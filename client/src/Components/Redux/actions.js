@@ -7,12 +7,15 @@ export const SET_REFERENCE = "SET_REFERENCE";
 export const PAGE_REFERENCE = "PAGE_REFERENCE";
 export const SORT_NAME = "SORT_NAME";
 export const SORT_SCORE = "SORT_SCORE";
+export const FILTER_DIET = "FILTER_DIET";
+export const CLEAR_FILTERS = "CLEAR_FILTERS";
 
 
 
-export const getRecipes = (name, page = 0, order, sort,diet) => {
+
+export const getRecipes = (name) => {
   return function (dispatch) {
-    return fetch(`http://localhost:3001/recipes?name=${name}&page=${page}&order=${order}&sort=${sort}&diet=${diet}`)
+    return fetch(`http://localhost:3001/recipes?name=${name}`)
       .then((response) => response.json())
       .then((json) => {
         return dispatch({
@@ -80,5 +83,19 @@ export const sortScore = (num) => {
   return{
     type:SORT_SCORE,
     payload: num,
+  }
+}
+
+export const filterDiet = (diet) => {
+  return {
+    type: FILTER_DIET,
+    payload: diet
+  }
+}
+
+export const clearFilters = () => {
+  return {
+    type: CLEAR_FILTERS
+  
   }
 }

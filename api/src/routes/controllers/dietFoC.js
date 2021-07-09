@@ -1,6 +1,7 @@
 const { Diet } = require("../../db");
 
-
+//[vegan, whole 30]
+//[vegan, primal ]
 function FoCDietG(obj) {
   try {
 

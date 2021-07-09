@@ -3,7 +3,7 @@ import "./App.css";
 import Form from "./Form";
 import GetStarted from "./GetStarted";
 import { Home } from "./Home";
-import DetailsRecipes from "./Recipes/DetailsRecipes";
+import DetailsRecipes from "./Recipes/Details/DetailsRecipesMain";
 import Top from "./Top";
 
 

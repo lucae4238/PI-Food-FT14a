@@ -1,10 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Message from "./Message";
 
-const RecipeCard = ({ name, img, id ,diets,score}) => {
+
+const RecipeCard = ({ name=0, img, id ,diets=[],score, message}) => {
+
+  if(message) return;
+
+
+
   return (
+    name === 0 ? <Message /> :
     <Container
+    
       style={{
         background: `url(${img})center / cover`,
       }}
@@ -13,8 +22,10 @@ const RecipeCard = ({ name, img, id ,diets,score}) => {
         <h3>{name}</h3>
       </Link>
         <h4>{score}</h4>
-
-      {diets.map((i) => (<h4>{i}</h4>))}
+        {
+          diets.length === 0 ? <h4>no diets associated</h4> :<h4>{diets}</h4>
+        }
+      
     </Container>
   );
 };

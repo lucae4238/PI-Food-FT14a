@@ -24,9 +24,9 @@ const Name = () => {
 
     return (
         <Container>
-            <Button onClick={Desc}>Desc</Button>
+            <Button onClick={Asc}>Desc</Button>
             <h1>Score</h1>
-            <Button onClick={Asc}>Asc</Button>
+            <Button onClick={Desc}>Asc</Button>
         </Container>
     )
 }

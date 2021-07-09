@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allowNull: true, 
       validate : {
-        max: 5,
+        max: 100,
         min: 0
       }
     }, 

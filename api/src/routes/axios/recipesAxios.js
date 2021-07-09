@@ -33,7 +33,17 @@ async function recipeName (name){
 async function recipeId (id){
     let item =   await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
     let data = item.data
-    console.log(data)
+
+    let stepsFormated =[]
+     data.analyzedInstructions.steps.map( item => {
+         let nested = []
+
+        item.steps.map(step => nested.push({step: step.step, number: step.number}))
+
+         let big = {name: item.name, steps: nested}
+         stepsFormated.push(big)
+     })
+
     let obj = {
 name: data.title,
 id: data.id,
@@ -43,7 +53,7 @@ dishTypes: data.dishTypes,
 diets: data.diets,
 healthScore:  data.healthScore,
 score: data.spoonacularScore,
-steps: data.analyzedInstructions
+steps: stepsFormated
 
     }
        return obj;

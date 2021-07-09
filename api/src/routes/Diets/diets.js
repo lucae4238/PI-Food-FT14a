@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Sequelize = require('sequelize');
-const { Diet } = require('../db');
+const { Diet } = require('../../db');
 const Op = Sequelize.Op;
 
 

@@ -1,52 +1,49 @@
 import React from "react";
-import {  useSelector } from "react-redux";
-import s from "styled-components";
+import { useSelector } from "react-redux";
+import Container from "../Styles/RecipesC";
+
 import Pagehandler from "./Buttons/Pagehandler";
 import Menu from "./Menu";
 import RecipeCard from "./Recipes/CardRecipe";
 
-
-
-
-
 const CardContainer = () => {
   const loading = useSelector((state) => state.loading);
   const recipes = useSelector((state) => state.recipesLoaded);
-  const page = useSelector(state => state.pageReference)
+  const page = useSelector((state) => state.pageReference);
 
+  let index = page * 9;
+  let end = index === 99 ? recipes.length + 1 : index + 9 < recipes.length - 1 ? index + 9 : recipes.length -1;
 
-  let index = page * 9
+  let results = recipes === [] ? [] : recipes.slice(index, end);
 
-  let results = recipes.slice(index, index + 9)
-
-
+  //if recipes is undefined show not found component
 
   return (
-    <Container>
 
+
+    <Container>
+      {results.length < 1 && loading ===false ? <h1>Start finding {results.length}</h1> : <> </>}
       {loading === true ? (
         <p>loading...</p>
       ) : (
         results.map((r) => (
-
-            <RecipeCard key={r.id} name={r.name} img={r.image} id={r.id} diets={r.diets} score={r.score}/>
-
+          <div key={r.id}>
+            <RecipeCard
+              name={r.name}
+              img={r.image}
+              id={r.id}
+              diets={r.diets}
+              score={r.score}
+              message={r.message}
+            />
+          </div>
         ))
       )}
-      {results.length === 0  || loading === true ? <></> : <Pagehandler />}
-      {results.length === 0  || loading === true ? <></> : <Menu />}
+      {results.length < 1 || loading === true ? <></> : <Pagehandler />}
+      {results.length < 1 || loading === true ? <></> : <Menu />}
     </Container>
   );
 };
-
-let Container = s.div`
-background-color: green;
-height: max-content;
-display: grid;
-grid-template-columns: 1fr 1fr 1fr ;
-grid-template-rows: 1fr 1fr 1fr ;
-overflow-y: scroll;
-`;
 
 
 

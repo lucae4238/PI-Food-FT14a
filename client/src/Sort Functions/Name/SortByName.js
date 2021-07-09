@@ -13,7 +13,7 @@ const dynamicSort = (num, property) => {
 
 const sortByName = (num, array) => {
   if (num !== 1 && num !== -1) return console.log('first arg must be 1 or -1');
-
+console.log('entro')
   return array.sort(dynamicSort(num, "name"));
 };
 

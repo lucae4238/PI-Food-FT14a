@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
-import MenuDiv from "./Buttons/MenuDiv";
-
+import Name from "./Buttons/Filters/Name";
 import "./Menu.css";
+import Score from './Buttons/Filters/Score';
 
 const Menu = () => {
   const reference = useRef(null);
@@ -32,12 +32,17 @@ const Menu = () => {
       <nav ref={reference} className={`menu ${bool ? "active" : "inactive"}`}>
         <ul>
           <li>
-            <MenuDiv name={"Name"}  />
+            <Name />
           </li>
-          <li>score</li>
+          <li>
+
+            <Score />
+          </li>
           <li>diets</li>
         </ul>
+
       </nav>
+
     </div>
   );
 };

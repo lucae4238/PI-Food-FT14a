@@ -12,7 +12,7 @@ const Pagehandler = () => {
   const reference = useSelector((state) => state.reference);
   const dispatch = useDispatch();
 
-  let timer = () => setTimeout(() => dispatch(setLoading()), 2000);
+
   if (reference !== "") {
     return (
       <>
@@ -20,7 +20,7 @@ const Pagehandler = () => {
           <Container>No prev</Container>
         ) : (
           <PrevPage
-            timer={timer}
+
             dispatch={dispatch}
             reference={reference}
             pageReference={pageReference}
@@ -31,7 +31,7 @@ const Pagehandler = () => {
           <></>
         ) : (
           <NextPage
-            timer={timer}
+
             dispatch={dispatch}
             reference={reference}
             pageReference={pageReference}

@@ -8,7 +8,8 @@ let initialState = {
   dietsLoaded: [],
   loading: false,
   reference: '',
-  pageReference: 0
+  pageReference: 0,
+  order: ''
 };
 
 
@@ -19,6 +20,7 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         recipesLoaded: action.payload,
+        loading:false
       };
     case GET_DETAILS:
       return {
@@ -50,13 +52,16 @@ export function reducer(state = initialState, action) {
       console.log('here')
       return {
         ...state, 
-        recipesLoaded: sortByName(action.payload, state.recipesLoaded)
+        recipesLoaded: sortByName(action.payload, state.recipesLoaded),
+        pageReference: 0
+
       }
 
       case SORT_SCORE:
         return {
           ...state, 
-          recipesLoaded: sortByScore(action.payload, state.recipesLoaded)
+          recipesLoaded: sortByScore(action.payload, state.recipesLoaded),
+          pageReference: 0
         }
 
     default:

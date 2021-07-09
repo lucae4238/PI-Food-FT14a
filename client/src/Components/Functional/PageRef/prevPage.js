@@ -1,14 +1,17 @@
 import React from "react";
-import { getRecipes, setLoading, setPageReference } from "../../Redux/actions";
+import { useHistory } from "react-router";
+import { setPageReference } from "../../Redux/actions";
 import Container from "../../Styles/buttons";
 
-const PrevPage = ({ timer, dispatch, reference, pageReference }) => {
+
+const PrevPage = ({ dispatch, reference, pageReference }) => {
+  const history = useHistory()
   const handleClick = () => {
     if (pageReference > 0) {
-      dispatch(setLoading());
       dispatch(setPageReference(pageReference - 1));
-      dispatch(getRecipes(reference, pageReference - 1));
-      timer();
+      console.log(`pageReference`, pageReference)
+      history.push('/home')
+      window.scrollTo(0, 0)
     } else {
       console.log("no previous page");
     }

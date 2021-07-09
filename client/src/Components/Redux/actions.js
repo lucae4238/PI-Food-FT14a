@@ -10,9 +10,9 @@ export const SORT_SCORE = "SORT_SCORE";
 
 
 
-export const getRecipes = (name, page = 0) => {
+export const getRecipes = (name, page = 0, order, sort,diet) => {
   return function (dispatch) {
-    return fetch(`http://localhost:3001/recipes?name=${name}&page=${page}`)
+    return fetch(`http://localhost:3001/recipes?name=${name}&page=${page}&order=${order}&sort=${sort}&diet=${diet}`)
       .then((response) => response.json())
       .then((json) => {
         return dispatch({

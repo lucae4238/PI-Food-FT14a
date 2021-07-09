@@ -10,7 +10,7 @@ function dynamicSort(num, property) {
 
 const sortByScore = (num, array) => {
   if (num !== 1 && num !== -1) return console.log('first arg must be 1 or -1');
-  return array.sort(dynamicSort(num, "id"));
+  return array.sort(dynamicSort(num, "score"));
 };
 
 export default sortByScore;

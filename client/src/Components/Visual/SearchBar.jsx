@@ -1,13 +1,11 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getRecipes, setLoading, setReference } from "../Redux/actions";
+import { getRecipes, setLoading, setPageReference, setReference } from "../Redux/actions";
 
 
 
  const SearchBar=()=> {
-
-  let timer =  () => setTimeout(() => dispatch(setLoading()), 2000)
   const dispatch = useDispatch();
   const [input, setInput] = useState('')
 
@@ -22,8 +20,8 @@ import { getRecipes, setLoading, setReference } from "../Redux/actions";
           dispatch(setLoading())
           dispatch(getRecipes(input))
           dispatch(setReference(input))
+          dispatch(setPageReference(0))
           setInput('')
-        timer()
       } 
 
   }

@@ -1,56 +1,40 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import s from "styled-components";
-import { sortName } from "../Redux/actions";
 import Pagehandler from "./Buttons/Pagehandler";
 import Menu from "./Menu";
 import RecipeCard from "./Recipes/CardRecipe";
-import Button from '../Styles/buttons'
-import { useHistory } from "react-router";
+
+
 
 
 
 const CardContainer = () => {
   const loading = useSelector((state) => state.loading);
   const recipes = useSelector((state) => state.recipesLoaded);
-  const dispatch = useDispatch();
-  const history = useHistory();
+  const page = useSelector(state => state.pageReference)
 
 
-  const nameSort = () => {
-    dispatch(sortName(-1));
-    history.push("/home");
-  };
+  let index = page * 9
 
-  const nameSortd = () => {
-    dispatch(sortName(1))
-    history.push("/home")
+  let results = recipes.slice(index, index + 9)
 
-  };
 
 
   return (
     <Container>
-      {console.log(recipes)}
-      {recipes.length === 0 ? (
-        <></>
-      ) : (
-        <>
-          <Button onClick={nameSort}>SORT ASC</Button>
-          <Button onClick={nameSortd}>SORT desc</Button>
-        </>
-      )}
+
       {loading === true ? (
         <p>loading...</p>
       ) : (
-        recipes.map((r) => (
-          <div key={r.id}>
-            <RecipeCard name={r.name} img={r.image} id={r.id} diets={r.diets} />
-          </div>
+        results.map((r) => (
+
+            <RecipeCard key={r.id} name={r.name} img={r.image} id={r.id} diets={r.diets} score={r.score}/>
+
         ))
       )}
-      {recipes.length === 0 ? <></> : <Pagehandler />}
-      {recipes.length === 0 ? <></> : <Menu />}
+      {results.length === 0  || loading === true ? <></> : <Pagehandler />}
+      {results.length === 0  || loading === true ? <></> : <Menu />}
     </Container>
   );
 };

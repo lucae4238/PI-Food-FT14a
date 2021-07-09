@@ -1,18 +1,19 @@
 import React from 'react'
-import { getRecipes, setLoading, setPageReference } from "../../Redux/actions";
+import { useHistory } from 'react-router';
+import {  setPageReference } from "../../Redux/actions";
 import Container from '../../Styles/buttons';
 
 
-const NextPage = ({timer, dispatch, reference,pageReference}) => {
+const NextPage = ({ dispatch, reference,pageReference}) => {
  
-
+const history = useHistory()
 
   const handleClick = () => {
     if(reference === '') return console.log('no reference to search next page') ;
-    dispatch(setLoading());
     dispatch(setPageReference(pageReference + 1));
-    dispatch(getRecipes(reference, (pageReference + 1)));
-    timer();
+    console.log(`pageReference`, pageReference)
+    history.push('/home')
+    window.scrollTo(0, 0)
   };
 
   return (

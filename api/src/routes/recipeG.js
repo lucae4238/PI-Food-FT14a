@@ -8,10 +8,11 @@ const Op = Sequelize.Op;
 
 router.get('/', async function(req,res) {
     
-    let {name,page} = req.query;
+    let {name} = req.query;
     //page is for paged results, marks wich page must be shown
-    let num= page !== undefined ? page : 0
+
 if(!name || name ==='' || name === ' ') return res.status(404).json({message: 'must send a valid name in query'})
+
     try {
         
     
@@ -31,23 +32,32 @@ if(!name || name ==='' || name === ' ') return res.status(404).json({message: 'm
     //adding found diets to DB
     FoCDietG(total)
 
-    //filtering for paged results => returns array with arrays with 9 results => [ [9], [9], [9], [9]...]
-    let pageFiltered = []
-for (let i = 0; i < total.length; i+=9) {
-    let z = total.slice(i, (i + 9))
-    pageFiltered.push(z)
-}
+//     if(order && sort ==='name'){
+//     sortByName(order, total)
+//     }
+//     if(order && sort ==='score'){
+//     sortByScore(order, total)
+//     }
+    
+//     let filtered = diet && diet !=='' ? filterDiet(diet,total) : total
+    
+
+//     //filtering for paged results => returns array with arrays with 9 results => [ [9], [9], [9], [9]...]
+//     let pageFiltered = []
+// for (let i = 0; i < filtered.length; i+=9) {
+//     let z = filtered.slice(i, (i + 9))
+//     pageFiltered.push(z)
+// }
 
 
 
-//final result is paged results + page num
-let final = pageFiltered[num]
-console.log(`total.length`, total.length)
-console.log(`pageFiltered.length`, pageFiltered.length)
-console.log(`final.length`, final.length)
+// //final result is paged results + page num
+// let final = pageFiltered[num]
 
 
-pageFiltered.length-1 < num ? res.json({message: 'results doesnt have that many pages'}) : res.json(final)
+
+// pageFiltered.length-1 < num ? res.json({message: 'results doesnt have that many pages'}) : 
+res.json(total)
 }catch (error) {
         console.log('error in get ', error)
         

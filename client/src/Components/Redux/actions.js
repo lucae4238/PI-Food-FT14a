@@ -27,7 +27,6 @@ export const getRecipes = (name) => {
 };
 
 export const getDetails = (id) => {
-  
   return function (dispatch) {
     return fetch(`http://localhost:3001/recipes/${id}`)
       .then((response) => response.json())

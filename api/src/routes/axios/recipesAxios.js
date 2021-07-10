@@ -45,10 +45,8 @@ async function recipeId (id){
         
         let big = {name: item.name, steps: nested}
         stepsFormated.push(big)
-        console.log(`nested`, nested)
         return nested
     })
-    console.log(`EQUIS DE`, stepsFormated)
 
     let obj = {
 name: data.title,

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetails } from "../../../Redux/actions";
 import Instruccions from "./Instruccions";
-import Button from "../../../Styles/buttons";
+import Button from "../../Styles/buttons";
 import styled from "styled-components";
+import { getDetails } from "../../Redux/actions";
 
 const DetailsRecipes = (props) => {
   const id = props.match.params.id;

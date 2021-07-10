@@ -1,5 +1,5 @@
 import React from 'react'
-import ClearFiltersButton from './Buttons/Filters/ClearFiltersButton'
+import ClearFiltersButton from '../../Buttons/Filters/ClearFiltersButton'
 
 const NoResultsFilter = () => {
     return (

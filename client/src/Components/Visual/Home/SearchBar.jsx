@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getRecipes, getTypes, setLoading, setPageReference, setReference } from "../Redux/actions";
+import { getRecipes, getTypes, setLoading, setPageReference, setReference } from "../../Redux/actions";
 
 
 

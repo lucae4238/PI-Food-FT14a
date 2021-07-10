@@ -1,12 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Container from "../Styles/RecipesC";
+import Container from '../../Styles/RecipesC'
 
-import Pagehandler from "./Buttons/Pagehandler";
-import Menu from "./Menu";
-import NoResultsFilter from "./NoResultsFilter";
-import NoResultsSearch from "./NoResultsSearch";
-import RecipeCard from "./Recipes/CardRecipe";
+
+import Pagehandler from '../Buttons/PageRef/Pagehandler'
+import Menu from "../Menu/Menu";
+import RecipeCard from "../Recipes/CardRecipe";
+import NoResultsFilter from "./NoResults/NoResultsFilter";
+import NoResultsSearch from './NoResults/NoResultsSearch'
+
 
 const CardContainer = () => {
   const loading = useSelector((state) => state.loading);
@@ -14,6 +16,7 @@ const CardContainer = () => {
   const page = useSelector((state) => state.pageReference);
   const reference = useSelector((state) => state.reference);
   const recipesUnfiltered = useSelector((state) => state.recipesUnfiltered);
+
 
   let index = page * 9;
   let end =
@@ -26,23 +29,22 @@ const CardContainer = () => {
       : recipes.length - 1;
 
   let results = recipes === [] ? [] : recipes.slice(index, end);
+  
 
   return (
     <>
-    
     <Container>
-      {}
+
       {recipesUnfiltered.length > 0 &&
         reference !== "" &&
         results.length === 0 && <NoResultsFilter />}
       {loading === true ? (
         <p>loading...</p>
-      ) : recipesUnfiltered[0].hasOwnProperty("message") ? (
-        <NoResultsSearch />
       ) : (
         results.map(
           (r) =>
-            !r["message"] && (
+
+          !r["message"] && (
               <div key={r.id}>
                 <RecipeCard
                   name={r.name}
@@ -55,9 +57,9 @@ const CardContainer = () => {
             )
         )
       )}
-      {!recipesUnfiltered[0].hasOwnProperty("message") && <Menu />}
+      {recipesUnfiltered.length > 1 && <Menu /> }
     </Container>
-      {results.length < 1 || loading === true ? <></> : <Pagehandler />}
+      {results.length >1 && loading === false && <Pagehandler /> }
     </>
   );
 };

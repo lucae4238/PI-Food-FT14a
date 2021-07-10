@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
-import Name from "./Buttons/Filters/Name";
+import Name from "../Buttons/Filters/Name";
 import "./Menu.css";
-import Score from './Buttons/Filters/Score';
+import Score from '../Buttons/Filters/Score';
 import DietsDiv from "./DietsDiv";
-import ClearFiltersButton from "./Buttons/Filters/ClearFiltersButton";
+import ClearFiltersButton from "../Buttons/Filters/ClearFiltersButton";
 
 const Menu = () => {
   const reference = useRef(null);

@@ -5,7 +5,7 @@ import styled from 'styled-components'
  const Message = () => {
     return (
         <Container>
-            no found
+            not found
         </Container>
     )
 }

@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import Current from "../../Functional/PageRef/current";
-import NextPage from "../../Functional/PageRef/nextPage";
-import PrevPage from "../../Functional/PageRef/prevPage";
-import Container from "../../Styles/buttons";
+import Current from "./current";
+import NextPage from "./nextPage";
+import PrevPage from "./prevPage";
+import Container from "../../../Styles/buttons";
 
 
 const Pagehandler = () => {

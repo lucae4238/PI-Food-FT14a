@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
-import { setPageReference } from "../../Redux/actions";
-import Container from "../../Styles/buttons";
+import { setPageReference } from "../../../Redux/actions";
+import Container from "../../../Styles/buttons";
 
 
 const PrevPage = ({ dispatch, reference, pageReference }) => {

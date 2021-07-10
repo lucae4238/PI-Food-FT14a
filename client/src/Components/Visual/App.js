@@ -2,8 +2,8 @@ import { Route } from "react-router";
 import "./App.css";
 import Form from "./Form";
 import GetStarted from "./GetStarted";
-import { Home } from "./Home";
-import DetailsRecipes from "./Recipes/Details/DetailsRecipesMain";
+import { Home } from "../Visual/Home/Home";
+import DetailsRecipes from "./Details/DetailsRecipesMain";
 import Top from "./Top";
 
 

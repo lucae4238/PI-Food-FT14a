@@ -1,12 +1,12 @@
 import React from "react";
 import s from "styled-components";
-import MakeYourOwn from "./Buttons/MakeYourOwnButton";
+import MakeYourOwn from "../Buttons/MakeYourOwnButton";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import { useSelector} from "react-redux";
 import CardContainer from "./CardContainer";
 import StartSearching from "./StartSearching";
-import NoResultsFilter from "./NoResultsFilter";
+import NoResultsFilter from "./NoResults/NoResultsFilter";
 
 export const Home = () => {
   const reference = useSelector((state) => state.reference);

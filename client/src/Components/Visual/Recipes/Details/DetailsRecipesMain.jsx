@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetails } from "../../../Redux/actions";
 import Instruccions from "./Instruccions";
-import Button from '../../../Styles/buttons'
+import Button from "../../../Styles/buttons";
 import styled from "styled-components";
 
 const DetailsRecipes = (props) => {
@@ -33,35 +33,34 @@ const DetailsRecipes = (props) => {
 
   useEffect(() => {
     dispatch(getDetails(id));
-  }, [id, dispatch]);
+    
+  }, []);
 
   const click = () => setBool(!bool);
+
 
   return (
     <>
       <h1>{name}</h1>
       <Container>
-
-      {dietsList.map((i) => (
-        <h4 key={i.id}>{i["name"]}</h4>
+        {dietsList.map((i) => (
+          <h4 key={i.id}>{i["name"]}</h4>
         ))}
-        </Container>
+      </Container>
       <div>
         <img src={image} alt={"recipe"} />
         <Container>
-
-        <h3>DishTypes</h3>
-        {dishList.map((i) => (
-          <div>
-            <h4>{i}</h4>
-          </div>
-        ))}
-            </Container>
-            <Container>
-
-        <h4>Health score: {healthScore}</h4>
-        <h4>user score: {score}</h4>
-            </Container>
+          <h3>DishTypes</h3>
+          {dishList.map((i) => (
+            <div>
+              <h4>{i}</h4>
+            </div>
+          ))}
+        </Container>
+        <Container>
+          <h4>Health score: {healthScore}</h4>
+          <h4>user score: {score}</h4>
+        </Container>
         <p>{summary}</p>
         {bool === false ? (
           <Button onClick={click}>show instruccions</Button>
@@ -81,4 +80,3 @@ const Container = styled.div`
 `;
 
 export default DetailsRecipes;
-

@@ -30,7 +30,7 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
-      {recipes.length < 2 ? (<></>) : (<button onClick={onClick} className="menu-trigger"><span>Filter</span></button>)}
+      {recipes.length < 1 ? (<></>) : (<button onClick={onClick} className="menu-trigger"><span>Filter</span></button>)}
       <nav ref={reference} className={`menu ${bool ? "active" : "inactive"}`}>
         <ul>
           <li>Results: {recipes.length}</li>

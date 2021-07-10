@@ -35,14 +35,20 @@ async function recipeId (id){
     let data = item.data
 
     let stepsFormated =[]
-     data.analyzedInstructions.steps.map( item => {
-         let nested = []
-
-        item.steps.map(step => nested.push({step: step.step, number: step.number}))
-
-         let big = {name: item.name, steps: nested}
-         stepsFormated.push(big)
-     })
+     data.analyzedInstructions.map( item => {
+        let nested = []
+        
+        item.steps.map(step => {
+            
+            nested.push({number: step.number,step: step.step, })
+        })
+        
+        let big = {name: item.name, steps: nested}
+        stepsFormated.push(big)
+        console.log(`nested`, nested)
+        return nested
+    })
+    console.log(`EQUIS DE`, stepsFormated)
 
     let obj = {
 name: data.title,

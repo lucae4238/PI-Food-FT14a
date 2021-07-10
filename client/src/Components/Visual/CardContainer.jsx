@@ -4,25 +4,34 @@ import Container from "../Styles/RecipesC";
 
 import Pagehandler from "./Buttons/Pagehandler";
 import Menu from "./Menu";
+import NoResultsFilter from "./NoResultsFilter";
 import RecipeCard from "./Recipes/CardRecipe";
+
 
 const CardContainer = () => {
   const loading = useSelector((state) => state.loading);
   const recipes = useSelector((state) => state.recipesLoaded);
   const page = useSelector((state) => state.pageReference);
+  const reference = useSelector(state => state.reference);
+  const recipesUnfiltered = useSelector(state => state.recipesUnfiltered)
 
   let index = page * 9;
-  let end = index === 99 ? recipes.length + 1 : index + 9 < recipes.length - 1 ? index + 9 : recipes.length -1;
+  let end =
+    page === 0
+      ? 9
+      : index === 99
+      ? recipes.length + 1
+      : index + 9 < recipes.length - 1
+      ? index + 9
+      : recipes.length - 1;
 
   let results = recipes === [] ? [] : recipes.slice(index, end);
 
   //if recipes is undefined show not found component
 
   return (
-
-
     <Container>
-      {results.length < 1 && loading ===false ? <h1>Start finding {results.length}</h1> : <> </>}
+{recipesUnfiltered.length > 0 && reference !== '' && results.length === 0 && <NoResultsFilter />}
       {loading === true ? (
         <p>loading...</p>
       ) : (
@@ -40,11 +49,9 @@ const CardContainer = () => {
         ))
       )}
       {results.length < 1 || loading === true ? <></> : <Pagehandler />}
-      {results.length < 1 || loading === true ? <></> : <Menu />}
+      <Menu />
     </Container>
   );
 };
-
-
 
 export default CardContainer;

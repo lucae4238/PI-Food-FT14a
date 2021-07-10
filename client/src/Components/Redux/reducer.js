@@ -1,7 +1,7 @@
 import filterByDiet from "../../Sort Functions/Diet/FilterByDiet";
 import sortByName from "../../Sort Functions/Name/SortByName";
 import sortByScore from "../../Sort Functions/Score/SortByScore";
-import {  GET_DETAILS, GET_RECIPES, GET_TYPES, PAGE_REFERENCE, SET_LOADING, SET_REFERENCE, SORT_NAME, SORT_SCORE, FILTER_DIET, CLEAR_FILTERS } from "./actions";
+import {  GET_DETAILS, GET_RECIPES, GET_TYPES, PAGE_REFERENCE, SET_LOADING, SET_REFERENCE, SORT_NAME, SORT_SCORE, FILTER_DIET, CLEAR_FILTERS, sortName } from "./actions";
 //FALTA ADD RECIPE
 let initialState = {
   recipesLoaded: [],
@@ -12,7 +12,6 @@ let initialState = {
   reference: '',
   pageReference: 0,
 };
-
 
 
 export function reducer(state = initialState, action) {
@@ -30,9 +29,10 @@ export function reducer(state = initialState, action) {
         recipeDetails: action.payload,
       };
     case GET_TYPES:
+
       return {
         ...state,
-        dietsLoaded: action.payload,
+        dietsLoaded: sortByName(-1, action.payload)
       };
      case SET_LOADING: 
      return{

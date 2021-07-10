@@ -5,10 +5,11 @@ import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import { useSelector} from "react-redux";
 import CardContainer from "./CardContainer";
-
+import StartSearching from "./StartSearching";
 
 export const Home = () => {
   const reference = useSelector((state) => state.reference);
+  const recipesUnfiltered = useSelector(state => state.recipesUnfiltered)
 
   let title =
     reference === ""
@@ -22,6 +23,10 @@ export const Home = () => {
         <MakeYourOwn />
       </Link>
       <SearchBar />
+    {
+      recipesUnfiltered.length === 0 && reference === '' && <StartSearching />
+    }
+      
       <CardContainer />
     </Container>
   );

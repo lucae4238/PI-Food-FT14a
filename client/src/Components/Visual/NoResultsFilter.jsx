@@ -6,7 +6,6 @@ const NoResultsFilter = () => {
         <>
         <h1>No results</h1>
         <ClearFiltersButton />
-
         </>
     )
 }

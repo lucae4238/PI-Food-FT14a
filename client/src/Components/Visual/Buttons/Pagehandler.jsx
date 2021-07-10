@@ -54,6 +54,7 @@ padding: 10px;
 height: 3em;
 width: 25em;
 positon: absolute;
+top: 10%;
 `;
 
 export default Pagehandler;

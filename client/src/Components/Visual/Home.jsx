@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useSelector} from "react-redux";
 import CardContainer from "./CardContainer";
 import StartSearching from "./StartSearching";
+import NoResultsFilter from "./NoResultsFilter";
 
 export const Home = () => {
   const reference = useSelector((state) => state.reference);
@@ -26,7 +27,8 @@ export const Home = () => {
     {
       recipesUnfiltered.length === 0 && reference === '' && <StartSearching />
     }
-      
+  
+    
       <CardContainer />
     </Container>
   );
@@ -38,7 +40,7 @@ background-color: blue;
 display:table;
 width:100%;
 overflow-y: scroll;
-height: 91.6vh;
+height: 91.9vh;
 
 
 

@@ -8,8 +8,6 @@ import Container from '../../../Styles/buttons'
 const ClearFiltersButton= () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const recipesLoaded = useSelector(state => state.recipesLoaded)
-    const pageReference = useSelector(state => state.pageReference)
 
     const clear = () => {
         dispatch(clearFilters())

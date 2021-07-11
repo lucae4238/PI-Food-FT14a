@@ -31,28 +31,21 @@ const Menu = () => {
   return (
     <div className="menu-container">
       {recipes.length < 1 ? (<></>) : (<button onClick={onClick} className="menu-trigger"><span>Filter</span></button>)}
-      <nav ref={reference} className={`menu ${bool ? "active" : "inactive"}`}>
+      <nav ref={reference} className={`menu ${bool && "active"}`}>
         <ul>
           <li>Results: {recipes.length}</li>
-          <li>
-            <Name />
-          </li>
-          <li>
-
-            <Score />
-          </li>
-          <li>
-            <DietsDiv />
-          </li>
-          <li>
-            <ClearFiltersButton />
-          </li>
+          <li> <Name /></li>
+          <li><Score /></li>
+          <li><DietsDiv /></li>
+          <li><ClearFiltersButton /></li>
         </ul>
-
       </nav>
-
     </div>
   );
 };
+
+
+
+
 
 export default Menu;

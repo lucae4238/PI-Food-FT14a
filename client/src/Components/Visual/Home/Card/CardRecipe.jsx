@@ -1,14 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Message from "./Message";
 
-const RecipeCard = ({ name = 0, img, id, diets = [], score, message }) => {
-  if (message) return;
-
-  return name === 0 ? (
-    <Message />
-  ) : (
+const RecipeCard = ({ name = 0, img, id, diets = [], score }) => {
+  return (
     <Container
       style={{
         background: `url(${img})center / cover`,
@@ -31,8 +26,6 @@ let Container = styled.div`
   height: 15em;
   h3 {
     background-color: white;
-    position: relative;
-    top: 100%;
   }
 
   h4 {

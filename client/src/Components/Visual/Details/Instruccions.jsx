@@ -14,8 +14,7 @@ const Instruccions = ({ array }) => {
           )}
           {i.steps.map((s) => (
             <Container2>
-              <h5>Number {s["number"]}</h5>
-              <h5>{s["step"]}</h5>
+              <h5> {s["number"]}. {s["step"]}</h5>
             </Container2>
           ))}
         </Container>

@@ -16,7 +16,7 @@
   }
   
   .menu-trigger:hover {
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
   
   .menu-trigger span {
@@ -32,15 +32,15 @@
 
   .menu {
     background: #ffffff;
-    border-radius: 8px;
+    border-radius: 18px;
     position: absolute;
-    top: 60px;
+    top: 43%;
     right: 0;
     width: 300px;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
     opacity: 0;
     visibility: hidden;
-    transform: translateX(200px);
+    transform: translateY(200px);
     transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
   }
   
@@ -58,11 +58,4 @@
   
   .menu li {
     border-bottom: 1px solid #dddddd;
-  }
-  
-  .menu li a {
-    text-decoration: none;
-    color: #333333;
-    padding: 15px 20px;
-    display: block;
   }

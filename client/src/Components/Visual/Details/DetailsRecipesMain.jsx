@@ -23,18 +23,19 @@ const DetailsRecipes = (props) => {
     let nested = [];
 
     item.steps.map((step) =>
-      nested.push({ step: step.step, number: step.number })
+       nested.push({ step: step.step, number: step.number })
+      
     );
 
     let big = { name: item.name, steps: nested };
     stepsFormated.push(big);
-    return;
+    return null;
   });
 
   useEffect(() => {
     dispatch(getDetails(id));
     
-  }, []);
+  }, [ id, dispatch], [dispatch]);
 
   const click = () => setBool(!bool);
 
@@ -61,7 +62,7 @@ const DetailsRecipes = (props) => {
           <h4>Health score: {healthScore}</h4>
           <h4>user score: {score}</h4>
         </Container>
-        <p>{summary}</p>
+        <h6 dangerouslySetInnerHTML={{ __html: summary }} />
         {bool === false ? (
           <Button onClick={click}>show instruccions</Button>
         ) : (

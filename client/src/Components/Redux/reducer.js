@@ -1,7 +1,7 @@
 import filterByDiet from "../../Sort Functions/Diet/FilterByDiet";
 import sortByName from "../../Sort Functions/Name/SortByName";
 import sortByScore from "../../Sort Functions/Score/SortByScore";
-import {  GET_DETAILS, GET_RECIPES, GET_TYPES, PAGE_REFERENCE, SET_LOADING, SET_REFERENCE, SORT_NAME, SORT_SCORE, FILTER_DIET, CLEAR_FILTERS, sortName } from "./actions";
+import {  GET_DETAILS, GET_RECIPES, GET_TYPES, PAGE_REFERENCE, SET_LOADING, SET_REFERENCE, SORT_NAME, SORT_SCORE, FILTER_DIET, CLEAR_FILTERS } from "./actions";
 //FALTA ADD RECIPE
 let initialState = {
   recipesLoaded: [],

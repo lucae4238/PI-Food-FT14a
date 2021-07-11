@@ -3,14 +3,14 @@ import s from "styled-components";
 import MakeYourOwn from "../Buttons/MakeYourOwnButton";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
-import { useSelector} from "react-redux";
-import CardContainer from "./CardContainer";
+import { useSelector } from "react-redux";
+import CardContainer from "./Card/CardContainer";
 import StartSearching from "./StartSearching";
-import NoResultsFilter from "./NoResults/NoResultsFilter";
 
 export const Home = () => {
   const reference = useSelector((state) => state.reference);
-  const recipesUnfiltered = useSelector(state => state.recipesUnfiltered)
+  const recipesUnfiltered = useSelector((state) => state.recipesUnfiltered);
+  const loading = useSelector((state) => state.loading);
 
   let title =
     reference === ""
@@ -24,12 +24,8 @@ export const Home = () => {
         <MakeYourOwn />
       </Link>
       <SearchBar />
-    {
-      recipesUnfiltered.length === 0 && reference === '' && <StartSearching />
-    }
-  
-    
-      <CardContainer />
+      {recipesUnfiltered.length === 0 && reference === "" && <StartSearching />}
+      {loading ? <h1>loading...</h1> : <CardContainer />}
     </Container>
   );
 };
@@ -50,4 +46,3 @@ h1{
     background-color: white;
 }
 `;
-

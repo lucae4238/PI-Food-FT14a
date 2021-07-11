@@ -10,7 +10,7 @@ router.get("/", async function (req, res) {
   //page is for paged results, marks wich page must be shown
 
   if (!name || name === "" || name === " ")
-    return res.status(404).json([{ message: "must send a valid name in query" }]);
+    return res.status(404).json({ message: "must send a valid name in query" });
 
   try {
     //finding in database
@@ -44,7 +44,7 @@ router.get("/", async function (req, res) {
     //finding in API
     let apiResult = await recipeName(name);
 
-    if (apiResult == null) return res.json([{ message: "key over used" }]);
+    if (apiResult == null) return res.json({ message: "key over used" });
 
     //adding found diets to DB
     FoCDietG(apiResult);
@@ -54,7 +54,7 @@ router.get("/", async function (req, res) {
     // let total = dbFormated
 
     //if theres no recipe with that name
-    if (total.length === 0) return res.json([{ message: "couldnt find any results" }]);
+    if (total.length === 0) return res.json({ message: "couldnt find any results" });
 
     res.json(total);
   } catch (error) {

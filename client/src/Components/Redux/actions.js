@@ -14,8 +14,9 @@ export const CLEAR_FILTERS = "CLEAR_FILTERS";
 
 
 export const getRecipes = (name) => {
+  let formated = name.toLowerCase();
   return function (dispatch) {
-    return fetch(`http://localhost:3001/recipes?name=${name}`)
+    return fetch(`http://localhost:3001/recipes?name=${formated}`)
       .then((response) => response.json())
       .then((json) => {
         return dispatch({

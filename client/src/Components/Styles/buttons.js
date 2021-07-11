@@ -4,10 +4,13 @@ let Container = styled.button`
 display: inline-block;
 color: white;
 border: 1px solid black;
+border-radius: 5px;
 background-color: purple;
 width:max-content;
 padding: 6px;
-margin: 0;
+margin: 0px;
+margin-left:10px;
+
 height:4em;
 
 h5{

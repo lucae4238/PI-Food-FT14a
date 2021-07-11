@@ -4,10 +4,11 @@ const { Recipe, Diet } = require('../../db');
 const {FoCDietP} = require('../controllers/dietFoC');
 const Op = Sequelize.Op;
 
+
+
 router.post('/', async (req,res) => {
     try {
     const {name, summary, score, healthScore, steps, image, dishTypes, diets} =req.body;
-
     if(!name || !summary) return res.status(400).json({message: 'error sending request'});
     if(score < 0 || score > 100) return res.send('score must be between 0 -100')
     if(healthScore < 0 || healthScore > 100) return res.json({message:'score must be between 0 -100'})

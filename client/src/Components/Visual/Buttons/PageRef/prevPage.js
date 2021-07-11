@@ -9,11 +9,8 @@ const PrevPage = ({ dispatch, reference, pageReference }) => {
   const handleClick = () => {
     if (pageReference > 0) {
       dispatch(setPageReference(pageReference - 1));
-      console.log(`pageReference`, pageReference)
       history.push('/home')
       window.scrollTo(0, 0)
-    } else {
-      console.log("no previous page");
     }
   };
 

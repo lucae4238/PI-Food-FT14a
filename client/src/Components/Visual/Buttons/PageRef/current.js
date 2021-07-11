@@ -1,11 +1,10 @@
 import React from 'react'
-import { useSelector } from "react-redux";
 import Container from '../../../Styles/buttons'
 
 
 
-const Current = () => {
-  const pageReference = useSelector((state) => state.pageReference);
+const Current = ({pageReference}) => {
+
  
   
 

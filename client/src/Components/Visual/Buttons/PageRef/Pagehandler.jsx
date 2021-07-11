@@ -1,17 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import Current from "./current";
-import NextPage from "./nextPage";
-import PrevPage from "./prevPage";
 import Container from "../../../Styles/buttons";
+import PageButton from "../TemplateButton";
+import { setPageReference } from '../../../Redux/actions';
 
 
 const Pagehandler = () => {
   const pageReference = useSelector((state) => state.pageReference);
-  const reference = useSelector((state) => state.reference);
   const recipes = useSelector((state) => state.recipesLoaded);
-  const dispatch = useDispatch();
 
 
   if (recipes.length > 1) {
@@ -20,28 +17,37 @@ const Pagehandler = () => {
         {pageReference < 1 ? (
           <Container>No prev</Container>
         ) : (
-          <PrevPage
+          // <PrevPage
 
-            dispatch={dispatch}
-            reference={reference}
-            pageReference={pageReference}
-          />
+          //   dispatch={dispatch}
+          //   reference={reference}
+          //   pageReference={pageReference}
+          // />
+          <PageButton
+          inner={'Prev'}
+          action={setPageReference}
+          arg={pageReference - 1}
+         />
+
+
         )}
-        <Current />
-        {(pageReference * 9) + 9 > recipes.length ? (
-          <></>
-        ) : (
-          <NextPage
+        <PageButton 
+        inner={pageReference}
+        action={setPageReference}
+        arg={0}
+        />
 
-            dispatch={dispatch}
-            reference={reference}
-            pageReference={pageReference}
-          />
+        {!((pageReference * 9) + 9 > recipes.length) && (
+          <PageButton
+         inner={'Next'}
+         action={setPageReference}
+         arg={pageReference + 1}
+        />
         )}
       </Div>
     );
   } else {
-    return <></>;
+    return null;
   }
 };
 

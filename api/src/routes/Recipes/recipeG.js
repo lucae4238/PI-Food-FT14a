@@ -66,11 +66,6 @@ router.get("/", async function (req, res) {
 
 
 
-
-
-
-
-
 router.get("/:id/", async function (req, res) {
   let { id } = req.params;
   //DB uses UUIDV1 => find if format is number or UUID

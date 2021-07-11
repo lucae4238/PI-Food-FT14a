@@ -1,6 +1,7 @@
+const axios = require('axios').default;
+
 export const GET_RECIPES = "GET_RECIPES";
 export const GET_TYPES = "GET_TYPES";
-export const ADD_RECIPE = "ADD_RECIPE";
 export const GET_DETAILS = "GET_DETAILS";
 export const SET_LOADING = "SET_LOADING";
 export const SET_REFERENCE = "SET_REFERENCE";
@@ -9,7 +10,7 @@ export const SORT_NAME = "SORT_NAME";
 export const SORT_SCORE = "SORT_SCORE";
 export const FILTER_DIET = "FILTER_DIET";
 export const CLEAR_FILTERS = "CLEAR_FILTERS";
-
+export const POST_RECIPE = "POST_RECIPE";
 
 
 
@@ -52,6 +53,15 @@ export const getTypes = () => {
       });
   };
 };
+
+export const postRecipe = (data) => {
+  axios.post(`http://localhost:3001/recipe`, data) //.then(response => console.log(`response from post`, response))
+
+
+  return (dispatch) => {
+    dispatch({type: POST_RECIPE})
+  }
+}
 
 export const setLoading = () => {
   return {

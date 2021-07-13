@@ -21,7 +21,7 @@ const SearchBar = () => {
     e.preventDefault();
     if (input !== "") {
       dispatch(setLoading());
-      dispatch(getRecipes(input));
+      await dispatch(getRecipes(input));
       dispatch(setReference(input));
       dispatch(setPageReference(0));
       dispatch(getTypes());

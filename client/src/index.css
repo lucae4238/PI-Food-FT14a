@@ -5,7 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  background: papayawhip;
+  
+}
+h1{
+  color: palevioletred;
+  text-decoration: none;
+  background: papayawhip;
 }
 
 code {

@@ -7,8 +7,8 @@ import { getDetails } from "../../Redux/actions";
 
 const DetailsRecipes = (props) => {
   const id = props.match.params.id;
-  const details = useSelector((state) => state.recipeDetails);
   const dispatch = useDispatch();
+  const details = useSelector((state) => state.recipeDetails);
   const { name, summary, score, healthScore, diets, dishTypes, image, steps } =
     details;
 
@@ -18,19 +18,6 @@ const DetailsRecipes = (props) => {
   let dishList = dishTypes ? dishTypes : [];
   let stepList = steps ? steps : [];
 
-  let stepsFormated = [];
-  stepList.map((item) => {
-    let nested = [];
-
-    item.steps.map((step) =>
-       nested.push({ step: step.step, number: step.number })
-      
-    );
-
-    let big = { name: item.name, steps: nested };
-    stepsFormated.push(big);
-    return null;
-  });
 
   useEffect(() => {
     dispatch(getDetails(id));
@@ -39,13 +26,12 @@ const DetailsRecipes = (props) => {
 
   const click = () => setBool(!bool);
 
-
   return (
     <>
-      <h1>{name}</h1>
       <Container>
+      <h1>{name}</h1>
         {dietsList.map((i) => (
-          <h4 key={i.id}>{i["name"]}</h4>
+          <h4 > •{i}</h4>
         ))}
       </Container>
       <div>
@@ -64,11 +50,11 @@ const DetailsRecipes = (props) => {
         </Container>
         <h6 dangerouslySetInnerHTML={{ __html: summary }} />
         {bool === false ? (
-          <Button onClick={click}>show instruccions</Button>
+          <Button onClick={click}>show instructions</Button>
         ) : (
           <>
-            <Instruccions array={stepsFormated} />
-            <Button onClick={click}>hide instruccions</Button>
+            <Instruccions array={stepList} />
+            <Button onClick={click}>hide instructions</Button>
           </>
         )}
       </div>
@@ -78,6 +64,12 @@ const DetailsRecipes = (props) => {
 
 const Container = styled.div`
   border: 4px solid red;
+  display: flex;
+  align-items: center;
+  h4{
+    color: grey;
+    margin-left: 5px;
+  }
 `;
 
 export default DetailsRecipes;

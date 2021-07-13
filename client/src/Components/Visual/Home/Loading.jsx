@@ -1,12 +1,13 @@
 import React from 'react'
 import logo from '../../../assets/fast-food-unscreen.gif'
 
-const StartSearching = () => {
+const Loading = () => {
     return (
         <div>
-        here the recipes will be shown
+            <h1>Searching...</h1>
+             <img src={logo}/>
         </div>
     )
 }
 
-export default StartSearching
+export default Loading

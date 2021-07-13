@@ -52,7 +52,8 @@ const CardContainer = () => {
             )
         )
       }
-      {recipesUnfiltered.length > 1 && <Menu /> }
+      
+      <Menu /> 
     </Container>
       {results.length !== 0 && loading === false && <Pagehandler /> }
     </>

@@ -2,23 +2,34 @@ import React from "react";
 import styled from "styled-components";
 
 const Instruccions = ({ array }) => {
-
   return (
     <div>
-      {array.map((i) => (
-        <Container>
-          {i["name"] !== "" && i["name"] ? (
-            <h4>{i["name"]}</h4>
+      {array.map((el) =>
+        el.map((el, index) =>
+          index === 0 ? (
+            el === "" ? (
+            <Container>
+
+              <h3>instructions</h3>
+            </Container>
+            ) : (
+              <Container>
+
+                <h3>{el}</h3>
+              </Container>
+            )
           ) : (
-            <h4>Instruccions</h4>
-          )}
-          {i.steps.map((s) => (
-            <Container2>
-              <h5> {s["number"]}. {s["step"]}</h5>
-            </Container2>
-          ))}
-        </Container>
-      ))}
+            el.map((el) => (
+              <Container2>
+                <h5>
+                  {" "}
+                  {el[0]} {el[1]}
+                </h5>
+              </Container2>
+            ))
+          )
+        )
+      )}
     </div>
   );
 };
@@ -29,6 +40,7 @@ const Container = styled.div`
 
 const Container2 = styled.div`
   border: 4px solid red;
+  margin 3px;
 `;
 
 export default Instruccions;

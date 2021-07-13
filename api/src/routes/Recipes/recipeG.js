@@ -21,13 +21,12 @@ router.get("/", async function (req, res) {
       ],
     });
 
-    
-    let dbFormated = []
+    let dbFormated = [];
 
-    dbResult.map(e => {
-      let diets = e["diets"]
-      let formated = []
-      diets.map(d => formated.push(d["name"]))
+    dbResult.map((e) => {
+      let diets = e["diets"];
+      let formated = [];
+      diets.map((d) => formated.push(d["name"]));
       let obj = {
         id: e["id"],
         name: e["name"],
@@ -36,10 +35,10 @@ router.get("/", async function (req, res) {
         steps: e["steps"],
         image: e["image"],
         dishTypes: e["dishTypes"],
-        diets:  formated,
-      }
-      dbFormated.push(obj)
-    })
+        diets: formated,
+      };
+      dbFormated.push(obj);
+    });
 
     //finding in API
     let apiResult = await recipeName(name);
@@ -54,7 +53,8 @@ router.get("/", async function (req, res) {
     // let total = dbFormated
 
     //if theres no recipe with that name
-    if (total.length === 0) return res.json({ message: "couldnt find any results" });
+    if (total.length === 0)
+      return res.json({ message: "couldnt find any results" });
 
     res.json(total);
   } catch (error) {
@@ -62,35 +62,51 @@ router.get("/", async function (req, res) {
   }
 });
 
-
-
-
-
 router.get("/:id/", async function (req, res) {
-  let { id } = req.params;
-  //DB uses UUIDV1 => find if format is number or UUID
+  try {
+    let { id } = req.params;
+    //DB uses UUIDV1 => find if format is number or UUID
 
-  if (
-    id.match(
-      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i
-    )
-  ) {
-    //if UUID search in DB, if no results send message
-    let dbResult = await Recipe.findOne({
-      where: { id: id },
-      include: [
-        { model: Diet, attributes: ["name"], through: { attributes: [] } },
-      ],
-    });
-    return dbResult === null
-      ? res.json({ mesage: "error finding with id" })
-      : res.json(dbResult);
+    if (
+      id.match(
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+      )
+    ) {
+      //if UUID search in DB, if no results send message
+      let dbResult = await Recipe.findOne({
+        where: { id: id },
+        include: [
+          { model: Diet, attributes: ["name"], through: { attributes: [] } },
+        ],
+      });
+      if (dbResult === null)
+        return res.json({ mesage: "error finding with id" });
+
+      let formated = [];
+      dbResult.diets.map((e) => formated.push(e["name"]));
+
+      let obj = {
+        id: dbResult["id"],
+        name: dbResult["name"],
+        score: dbResult["score"],
+        healthScore: dbResult["healthScore"],
+        steps: dbResult["steps"],
+        image: dbResult["image"],
+        dishTypes: dbResult["dishTypes"],
+        diets: formated,
+      };
+
+      return res.json(obj);
+    } else {
+      //format isnt UUID, find in API
+      let apiResult = await recipeId(id);
+      return apiResult.length === 0
+        ? res.json({ mesage: "error finding with id" })
+        : res.json(apiResult);
+    }
+  } catch (error) {
+    console.log("error getting by ID", error);
   }
-  //format isnt UUID, find in API
-  let apiResult = await recipeId(id);
-  return apiResult.length === 0
-    ? res.json({ mesage: "error finding with id" })
-    : res.json(apiResult);
 });
 
 module.exports = router;

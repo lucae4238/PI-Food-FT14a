@@ -9,7 +9,7 @@ const Op = Sequelize.Op;
 router.post('/', async (req,res) => {
     try {
     const {name, summary, score, healthScore, steps, image, dishTypes, diets} =req.body;
-    if(!name || !summary) return res.status(400).json({message: 'error sending request'});
+    if(!name || !summary) return res.status(400).json({message: 'name and summary required'});
     if(score < 0 || score > 100) return res.send('score must be between 0 -100')
     if(healthScore < 0 || healthScore > 100) return res.json({message:'score must be between 0 -100'})
 
@@ -20,10 +20,11 @@ router.post('/', async (req,res) => {
         score, 
         healthScore,
         steps,
-        image,
-        dishTypes
+        image: 'https://dclgroup.com.ar/wp-content/themes/unbound/images/No-Image-Found-400x264.png',
+        dishTypes,
+
     })
-//[vegan, vegetarian, whole 30]
+    
 let formated= Array.isArray(diets) ? diets: [diets]
 
     const matchingDiets = await Diet.findAll({

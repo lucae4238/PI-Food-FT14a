@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
-
 const GetStarted = () => {
+
   return (
     <div>
       <div className="App">
@@ -11,7 +10,6 @@ const GetStarted = () => {
         <Link to="/home">
           <h4>Get Started</h4>
         </Link>
-        
       </div>
     </div>
   );

@@ -36,7 +36,12 @@ const Menu = () => {
       )}
       <nav ref={reference} className={`menu ${bool && "active"}`}>
         <ul>
-          <li> Results: {recipes.length}</li>
+          <li>
+            <h3>
+
+            Results: {recipes.length}
+            </h3>
+            </li>
           <li>
             <FilterDiv
               innerLeft={"Desc"}

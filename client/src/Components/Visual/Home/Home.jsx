@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CardContainer from "./Card/CardContainer";
 import StartSearching from "./StartSearching";
+import Loading from "./Loading";
+
 
 export const Home = () => {
   const reference = useSelector((state) => state.reference);
@@ -20,12 +22,10 @@ export const Home = () => {
   return (
     <Container>
       <h1>{title} Recipes</h1>
-      <Link to="/makeRecipe">
         <MakeYourOwn />
-      </Link>
       <SearchBar />
       {recipesUnfiltered.length === 0 && reference === "" && <StartSearching />}
-      {loading ? <h1>loading...</h1> : <CardContainer />}
+      {loading ? <Loading /> : <CardContainer />}
     </Container>
   );
 };

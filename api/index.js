@@ -33,12 +33,15 @@ conn.sync({ force: true }).then(() => {
 var glutenFree = Diet.create({name: 'gluten free',})
 var Ketogenic = Diet.create({name: 'ketogenic',})
 var lactoVegetarian = Diet.create({name: 'lacto vegetarian',})
+var lactoOvoVegetarian = Diet.create({name: 'lacto ovo vegetarian',})
 var ovoVegetarian = Diet.create({name: 'ovo vegetarian',})
 var vegan = Diet.create({name: 'vegan',})
 var pescetarian = Diet.create({name: 'pescatarian',})
 var paleo = Diet.create({name: 'paleo',})
+var paleolithic = Diet.create({name: 'paleolithic',})
 var primal = Diet.create({name: 'primal',})
 var whole30 = Diet.create({name: 'whole 30',})
+var foodmap = Diet.create({name: 'foodmap friendly',})
 
 
 
@@ -46,7 +49,7 @@ var whole30 = Diet.create({name: 'whole 30',})
 
 
 Promise.all([glutenFree, Ketogenic, lactoVegetarian,ovoVegetarian,
-             vegan,pescetarian,paleo,primal,whole30])
+             vegan,pescetarian,paleo,primal,whole30,lactoOvoVegetarian,paleolithic,foodmap])
   .then(res => {
     console.log("Dietas precargadas");
   });

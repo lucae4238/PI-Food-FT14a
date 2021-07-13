@@ -10,6 +10,7 @@ const RecipeCard = ({ name = 0, img, id, diets = [], score }) => {
         background: `url(${img})center / cover`,
       }}
     >
+      <Link to={`/recipe/${id}`}>
 
 
       <Div>
@@ -17,7 +18,6 @@ const RecipeCard = ({ name = 0, img, id, diets = [], score }) => {
 
       {diets.length === 0 ? <h4>no diets associated</h4> : <h4>{diets}</h4>}
       </Div>
-      <Link to={`/recipe/${id}`}>
         <h3>{name}</h3>
       </Link>
     </Container>
@@ -30,31 +30,39 @@ const RecipeCard = ({ name = 0, img, id, diets = [], score }) => {
 
 
 let Container = styled.div`
-
+a{
+  text-decoration: none;
+}
   background-repeat: repeat;
   text-align: center;
   margin: 3em;
-  width: 20em;
-  height: 15em;
+  min-width: 20em;
+  min-height: 15em;
+  max-height: 16em;
+  border-radius: 13px;
   h3 {
     display: flex;
     align-items: center;
     padding: 5px 10px;
     background: papayawhip;
     color: palevioletred;
-    text-decoration: none;
+    position: relative;
+    border-radius: 0 0 13px 13px;
+    top: 44%;
+    min-height: 3em;
     }
   }
 
-  h4 {
-    
-  }
 `;
 
 
 const Div = styled.div`
 background: papayawhip;
 visibility: hidden;
+
+a{
+  text-decoration: none;
+}
 
 ${Container}:hover & {
   visibility: visible;

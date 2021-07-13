@@ -1,4 +1,4 @@
-import React, { createRef, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { postRecipe } from "../../Redux/actions";
 import { useDispatch } from "react-redux";
@@ -8,22 +8,46 @@ import Button from "../../Styles/buttons";
 
 import Input from "../../Styles/input";
 import InputNum from "../Buttons/InputNum";
+import LinkButton from "../Buttons/LinkButton";
+
 
 const Form = () => {
   const dispatch = useDispatch();
   const dietsLoaded = useDiets(); //gets diets on mount
   const [done, setDone] = useState(false);
   const [danger, setDanger] = useState(false);
-  const inputRef = createRef();
   const initialState = {
     name: "",
     summary: "",
     score: 0,
     healthScore: 0,
-    steps: [],
+    steps: ["", []],
     diets: [],
   };
   const [submission, setSubmission] = useState({ ...initialState });
+
+  const stepModel = ["", ""];
+
+  const [part, setPart] = useState(["", [[...stepModel]]]);
+
+  const addStep = () => {
+    let step = [...part];
+    step[1].push([...stepModel]);
+    setPart(step);
+  };
+
+  const handleStepTitleChange = (e) => {
+    let step = [...part]
+    step[0] = e.target.value;
+    setPart([...step])
+  }
+
+  const handleStepChange = (e) => {
+    let step = [...part];
+    let num = Number(e.target.id) + 1;
+    step[1][e.target.id] = [num.toString(), e.target.value];
+    setPart([...step]);
+  };
 
   let dietList = {};
 
@@ -33,10 +57,12 @@ const Form = () => {
     e.preventDefault();
     if (submission.name === "" || submission.summary === "")return setDanger(true); //prettier-ignore
     Object.entries(dietList).map((e) => e[1] && submission.diets.push(e[0]));
+    submission.steps = [[...part]];
     await dispatch(postRecipe(submission));
     setDone(true);
     setDanger(false);
     setSubmission({ ...initialState });
+    console.log(`submission`, submission);
   };
 
   const handleSubmissionChange = (e) => {
@@ -51,7 +77,9 @@ const Form = () => {
 
   return (
     <Container>
-      <h1>Submit your own recipe!</h1>
+       {!done && <h1>Submit your own recipe!</h1>}
+      <LinkButton to='/home' inner='go home'/>
+      
       {done ? (
         <>
           <ThanksForSubmitting />
@@ -59,16 +87,17 @@ const Form = () => {
         </>
       ) : (
         <FormContainer onSubmit={handleSubmit}>
-          <input type='submit' />
+          <Send type='submit' >Submit</Send>
           <div>
             <div>
               <Title
                 danger={danger && "red"}
                 type="text"
-                placeholder={danger ? "title is requiered" : "title"}
+                placeholder={danger ? "title is required" : "title *"}
                 name="name"
                 value={submission.name}
                 onChange={handleSubmissionChange}
+                
               />
               <InputNum
                 change={handleSubmissionChange}
@@ -84,7 +113,7 @@ const Form = () => {
             <Summary
               danger={danger && "red"}
               type="text"
-              placeholder={danger ? "summary is requiered" : "summary"}
+              placeholder={danger ? "summary is required" : "summary *"}
               name="summary"
               value={submission.summary}
               onChange={handleSubmissionChange}
@@ -100,11 +129,35 @@ const Form = () => {
                   value={e.name}
                   onChange={handleCheckboxChange}
                 />
-                <lable for={index}>{e.name}</lable>
+                <label htmlFor={index}>{e.name}</label>
               </Block>
             ))}
           </Div>
-          
+          <div>
+            <h1>Instrucctions</h1>
+          {part.map((el, i) =>
+            i === 0 ? (
+              <Title
+                placeholder="insert a title!"
+                type="text"
+                value={el}
+                onChange={handleStepTitleChange}
+              />
+            ) : (
+              el.map((e, i) => (
+                <Input
+                  placeholder={`step  ${i + 1}`}
+                  type="text"
+                  id={i}
+                  name={`step ${i}`}
+                  value={e[1]}
+                  onChange={handleStepChange}
+                />
+              ))
+            )
+          )}
+          <Button as='div' onClick={addStep}> Add step</Button>
+          </div>
         </FormContainer>
       )}
     </Container>
@@ -128,35 +181,40 @@ const Block = styled.div`
   vertical-align: middle;
   position: relative;
   bottom: 1px;
-  lable {
+  label {
     vertical-align: top;
+    background-color: white;
   }
-  
 `;
 
 const Title = styled(Input)`
-font-weight: 700;
-font-size: 27px;
-width: 13em;
+  font-weight: 700;
+  font-size: 27px;
+  width: 13em;
 
-::placeholder,
+  ::placeholder,
   ::-webkit-input-placeholder {
     font-size: 27px;
   }
 `;
 
 const Summary = styled(Input)`
-
   width: 50em;
   padding-bottom: 130px;
 `;
 
 const FormContainer = styled.form`
-  // display: grid;
-  // grid-template-columns: 1fr 1fr;
-  // grid-template-rows: 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
 `;
 
 const Container = styled.div`
   height: max-content;
+`;
+
+const Send = styled(Button)`
+position: absolute;
+height: 3em;
+
 `;

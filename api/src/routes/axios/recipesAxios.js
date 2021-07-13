@@ -56,7 +56,6 @@ async function recipeId(id) {
     return nested;
   });
 
-  console.log(`stepsFormated`, stepsFormated)
 
   let obj = {
     name: data.title,

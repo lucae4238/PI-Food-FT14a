@@ -54,6 +54,13 @@ let Container = styled.div`
 `;
 
 let Search = styled.input`
+  outline: none;
+  color: palevioletred;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 13px;
+  display: block;
+  background: papayawhip;
   width: 100%;
   height: 3em;
 `;

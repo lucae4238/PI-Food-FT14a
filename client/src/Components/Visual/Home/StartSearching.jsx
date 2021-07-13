@@ -1,12 +1,35 @@
 import React from 'react'
-import logo from '../../../assets/fast-food-unscreen.gif'
+import styled from 'styled-components'
+import sushi from '../../../assets/fun-sashimi.png'
 
 const StartSearching = () => {
     return (
-        <div>
+        <Div>
+        <h1>
         here the recipes will be shown
-        </div>
+
+        </h1>
+        <Div>
+
+        <Img src={sushi} />
+        </Div>
+         </Div>
     )
 }
 
 export default StartSearching
+
+
+const Img = styled.img`
+height: 25em;
+
+
+`;
+
+const Div = styled.div`
+height: 30em;
+background-color: yellow;
+margin: 0;
+display: flex;
+justify-content: center;
+`;

@@ -1,8 +1,7 @@
 import React from "react";
 import s from "styled-components";
-import MakeYourOwn from "../Buttons/MakeYourOwnButton";
+import MakeYourOwn from "../Buttons/LinkButton";
 import SearchBar from "./SearchBar";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CardContainer from "./Card/CardContainer";
 import StartSearching from "./StartSearching";
@@ -22,9 +21,9 @@ export const Home = () => {
   return (
     <Container>
       <h1>{title} Recipes</h1>
-        <MakeYourOwn />
+        <MakeYourOwn to='/makeRecipe' inner={'make your own'} />
       <SearchBar />
-      {recipesUnfiltered.length === 0 && reference === "" && <StartSearching />}
+      {recipesUnfiltered.length === 0 && reference === "" && !loading && <StartSearching />}
       {loading ? <Loading /> : <CardContainer />}
     </Container>
   );
@@ -36,7 +35,8 @@ background-color: blue;
 display:table;
 width:100%;
 overflow-y: scroll;
-height: 91.9vh;
+height: 100vh;
+min-height: 45em;
 
 
 

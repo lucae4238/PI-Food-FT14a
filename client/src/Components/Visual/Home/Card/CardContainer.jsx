@@ -53,9 +53,10 @@ const CardContainer = () => {
         )
       }
       
-      <Menu /> 
+    
     </Container>
       {results.length !== 0 && loading === false && <Pagehandler /> }
+      {results.length > 1 && loading === false && <Menu />  }
     </>
   );
 };

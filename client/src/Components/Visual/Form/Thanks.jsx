@@ -6,9 +6,6 @@ const ThanksforSubmitting = () => {
   return (
     <>
       <h1>Thanks for submitting :D</h1>
-      <Link to="/home">
-        <Button>Go home</Button>
-      </Link>
     </>
   );
 };

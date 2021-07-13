@@ -25,6 +25,7 @@ const Input = styled.input`
   ::placeholder,
   ::-webkit-input-placeholder {
     font-size: 17px;
+    color: ${(props) => props.danger && "red"};
   }
 
   

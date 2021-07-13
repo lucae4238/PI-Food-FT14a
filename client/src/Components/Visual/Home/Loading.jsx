@@ -5,7 +5,7 @@ const Loading = () => {
     return (
         <div>
             <h1>Searching...</h1>
-             <img src={logo}/>
+             <img src={logo} alt='loading'/>
         </div>
     )
 }

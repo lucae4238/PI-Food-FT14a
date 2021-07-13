@@ -10,7 +10,7 @@ function useDiets (){
 
     useEffect(() => {
         dispatch(getTypes())
-      }, []);
+      }, [dispatch]);
 
       return dietsLoaded
 }

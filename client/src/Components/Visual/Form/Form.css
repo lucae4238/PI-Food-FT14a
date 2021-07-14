@@ -1,0 +1,41 @@
+.container{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 4fr 2fr;
+    grid-template-areas:
+      "info instructions"
+      "diets instructions";
+    grid-gap: 0.2rem;
+  }
+  .info{
+    background: purple;
+    grid-area: info
+  }
+  
+  .diets{
+    background: blue;
+    grid-area: diets;
+  }
+  
+  
+  
+  .instructions{
+     background: yellow;
+    grid-area: instructions
+  }
+  
+  @media only screen and (max-width: 550px){
+    .container{
+      grid-template-columns: 1fr;
+      grid-template-rows:  5fr 3fr 4fr;
+        grid-template-areas:
+          "info"
+          "diets"
+          "instructions"
+          
+    }
+    
+  }
+  
+  

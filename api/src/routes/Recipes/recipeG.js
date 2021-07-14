@@ -28,7 +28,6 @@ router.get("/", async function (req, res) {
       let formated = [];
       diets.map((d) => formated.push(d["name"]));
 
-
       let obj = {
         id: e["id"],
         name: e["name"],
@@ -83,8 +82,6 @@ router.get("/:id/", async function (req, res) {
 
       let formated = [];
       dbResult.diets.map((e) => formated.push(e["name"]));
-
-      console.log(`dbResult["steps"]`, dbResult["steps"])
 
       let obj = {
         id: dbResult["id"],

@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 const LinkButton = ({to, inner}) => {
     return (
-        <Div>
+        <Div as='div'>
             <Link to={to}>
         <Container>
             <h5>
@@ -20,7 +20,7 @@ const LinkButton = ({to, inner}) => {
     )
 }
 
-const Div = styled.div`
+const Div = styled.button`
 display: inline-block;
 `;
 

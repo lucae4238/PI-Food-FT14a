@@ -8,8 +8,7 @@ import Button from "../../Styles/buttons";
 
 import Input from "../../Styles/input";
 import InputNum from "../Buttons/InputNum";
-import LinkButton from "../Buttons/LinkButton";
-
+import GoHome from "../Buttons/GoHome";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -37,10 +36,10 @@ const Form = () => {
   };
 
   const handleStepTitleChange = (e) => {
-    let step = [...part]
+    let step = [...part];
     step[0] = e.target.value;
-    setPart([...step])
-  }
+    setPart([...step]);
+  };
 
   const handleStepChange = (e) => {
     let step = [...part];
@@ -77,9 +76,9 @@ const Form = () => {
 
   return (
     <Container>
-       {!done && <h1>Submit your own recipe!</h1>}
-      <LinkButton to='/home' inner='go home'/>
-      
+      {!done && <h1>Submit your own recipe!</h1>}
+      <GoHome top={'3%'}/>
+
       {done ? (
         <>
           <ThanksForSubmitting />
@@ -87,7 +86,7 @@ const Form = () => {
         </>
       ) : (
         <FormContainer onSubmit={handleSubmit}>
-          <Send type='submit' >Submit</Send>
+          <Send type="submit">Submit</Send>
           <div>
             <div>
               <Title
@@ -97,7 +96,6 @@ const Form = () => {
                 name="name"
                 value={submission.name}
                 onChange={handleSubmissionChange}
-                
               />
               <InputNum
                 change={handleSubmissionChange}
@@ -124,6 +122,7 @@ const Form = () => {
               <Block>
                 <input
                   id={index}
+                  key={index}
                   type="checkbox"
                   name={e.name}
                   value={e.name}
@@ -135,28 +134,33 @@ const Form = () => {
           </Div>
           <div>
             <h1>Instrucctions</h1>
-          {part.map((el, i) =>
-            i === 0 ? (
-              <Title
-                placeholder="insert a title!"
-                type="text"
-                value={el}
-                onChange={handleStepTitleChange}
-              />
-            ) : (
-              el.map((e, i) => (
-                <Input
-                  placeholder={`step  ${i + 1}`}
+            {part.map((el, i) =>
+              i === 0 ? (
+                <Title
+                  key={i}
+                  placeholder="insert a title!"
                   type="text"
-                  id={i}
-                  name={`step ${i}`}
-                  value={e[1]}
-                  onChange={handleStepChange}
+                  value={el}
+                  onChange={handleStepTitleChange}
                 />
-              ))
-            )
-          )}
-          <Button as='div' onClick={addStep}> Add step</Button>
+              ) : (
+                el.map((e, i) => (
+                  <Input
+                    key={i * 3}
+                    placeholder={`step  ${i + 1}`}
+                    type="text"
+                    id={i}
+                    name={`step ${i}`}
+                    value={e[1]}
+                    onChange={handleStepChange}
+                  />
+                ))
+              )
+            )}
+            <Button as="div" onClick={addStep}>
+              {" "}
+              Add step
+            </Button>
           </div>
         </FormContainer>
       )}
@@ -214,7 +218,6 @@ const Container = styled.div`
 `;
 
 const Send = styled(Button)`
-position: absolute;
-height: 3em;
-
+  position: absolute;
+  height: 3em;
 `;

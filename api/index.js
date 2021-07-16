@@ -41,7 +41,7 @@ var paleo = Diet.create({name: 'paleo',})
 var paleolithic = Diet.create({name: 'paleolithic',})
 var primal = Diet.create({name: 'primal',})
 var whole30 = Diet.create({name: 'whole 30',})
-var foodmap = Diet.create({name: 'foodmap friendly',})
+var foodmap = Diet.create({name: 'fodmap friendly',})
 
 
 

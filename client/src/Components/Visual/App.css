@@ -1,3 +1,10 @@
+
+@import url("https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap%27");
+
+body{
+  font-size: RocknRoll, sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -36,3 +43,4 @@
     transform: rotate(360deg);
   }
 }
+

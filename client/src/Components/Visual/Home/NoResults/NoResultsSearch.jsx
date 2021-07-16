@@ -6,7 +6,10 @@ const NoResultsSearch = () => {
     const reference = useSelector(state => state.reference)
 
     return (
-        <h1>No {reference} recipes found </h1>
+        <div className={'head'}>
+
+            <h1>No {reference} recipes found </h1>
+        </div>
     )
 }
 

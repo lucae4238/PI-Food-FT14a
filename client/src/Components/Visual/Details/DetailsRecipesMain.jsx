@@ -6,8 +6,8 @@ import styled from "styled-components";
 import { getDetails } from "../../Redux/actions";
 import Errorhandler from "../Errorhandler";
 import GoHome from "../Buttons/GoHome";
-import ContainerButton from "../../Styles/buttons";
-import './Details.css'
+import "./Details.css";
+import LinkButton from "../Buttons/LinkButton";
 
 const DetailsRecipes = (props) => {
   const id = props.match.params.id;
@@ -22,13 +22,9 @@ const DetailsRecipes = (props) => {
   let dishList = dishTypes ? dishTypes : [];
   let stepList = steps ? steps : [];
 
-  useEffect(
-    () => {
-      dispatch(getDetails(id));
-    },
-    [id, dispatch],
-    [dispatch]
-  );
+  useEffect(() => {
+    dispatch(getDetails(id));
+  }, [id, dispatch]);
 
   const click = () => setBool(!bool);
 
@@ -37,14 +33,17 @@ const DetailsRecipes = (props) => {
   } else
     return (
       <>
-        <GoHome top={"3%"} />
-        <div className={'container'}>
+        <div className={"container"}>
+        <LinkButton to='/home' inner='go home' />
           <Container className={"title"}>
             <h1>{name}</h1>
-            {
-              dietsList.length === 0 ? <h4>no diets associated</h4> : dietsList.map((i) => (<h4 > •{i}</h4>)) //prettier-ignore
-            }
           </Container>
+          <div className={'diets'}>
+
+          {
+            dietsList.length === 0 ? <h4> • no diets associated</h4> : dietsList.map((i) => (<h4 > •{i}</h4>)) //prettier-ignore
+          }
+          </div>
 
           <Container className={"dishTypes"}>
             <h3>Dish types</h3>
@@ -57,82 +56,37 @@ const DetailsRecipes = (props) => {
             <h4>user score: {score}</h4>
           </Container>
           <Container className={"summary"}>
-            <h6 dangerouslySetInnerHTML={{ __html: summary }} />
+            <h3>{summary}</h3>
           </Container>
 
           <Container className={"img"}>
             <img src={image} alt={"recipe"} />
           </Container>
-          <Container className={"instructions"}>
-            {bool === false ? (
-              <Button onClick={click}>show instructions</Button>
-            ) : (
-              <>
-                <Instruccions array={stepList} />
-                <Button onClick={click}>hide instructions</Button>
-              </>
-            )}
-          </Container>
+          {!bool && <Container className="hideshow">
+            <Button onClick={click}>
+            "show instructions"
+            </Button>
+          </Container> }
+
+          {bool && (
+            <Container className={"instructions"}>
+              <Instruccions array={stepList} action={click}/>
+            </Container>
+          )}
         </div>
       </>
     );
 };
 
 const Container = styled.div`
-  border: 4px solid red;
+  // border: 4px solid red;
   display: flex;
   align-items: center;
+  justify-content: center;
   h4 {
     color: grey;
     margin-left: 5px;
   }
-`;
-
-const Div = styled.div`
-  // display: grid;
-  // grid-template-columns: 1fr 1fr;
-  // grid-template-rows: 1fr;
-
-  display: grid;
-  height: 100vh;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 3fr 1fr 3fr;
-  grid-template-areas:
-    "title title"
-    "summary img"
-    "dishTypes score"
-    "instructions instructions";
-  grid-gap: 0.2rem;
-
-.title{
-  grid-area: title
-}
-
-.summary{
-  background: red;
-  grid-area: summary;
-}
-
-.img{
-  background: purple;
-  grid-area: img;
-}
-
-.dishTypes{
-  background: blue;
-  grid-area: dishTypes;
-}
-
-.score{
-  background: #add8e6;
-  grid-area: score;
-}
-
-.instructions{
-   background: yellow;
-  grid-area: instructions
-}
-
 `;
 
 export default DetailsRecipes;

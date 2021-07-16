@@ -1,6 +1,6 @@
 import React from 'react'
 import {  sortName } from '../../../Redux/actions';
-import Container from '../../../Styles/Filter'
+// import Container from '../../../Styles/Filter'
 import Template from '../TemplateButton';
 
 
@@ -27,3 +27,12 @@ const Name = () => {
 
 export default Name
 
+const Container = styled.div`
+display: flex;
+justify-content: space-around;
+height: max-content;
+padding: 5px;
+margin: 0;
+background: red;
+align-items: center;
+`;

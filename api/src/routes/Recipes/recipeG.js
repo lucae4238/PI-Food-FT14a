@@ -85,6 +85,7 @@ router.get("/:id/", async function (req, res) {
 
       let obj = {
         id: dbResult["id"],
+        summary: dbResult["summary"],
         name: dbResult["name"],
         score: dbResult["score"],
         healthScore: dbResult["healthScore"],

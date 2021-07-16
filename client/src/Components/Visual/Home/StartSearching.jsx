@@ -1,35 +1,39 @@
-import React from 'react'
-import styled from 'styled-components'
-import sushi from '../../../assets/fun-sashimi.png'
+import React from "react";
+import styled from "styled-components";
+import sushi from "../../../assets/fun-sashimi.png";
 
 const StartSearching = () => {
-    return (
-        <Div>
-        <h1>
-        here the recipes will be shown
+  return (
+    <Div>
+      <Title>The recipes will be shown here </Title>
 
-        </h1>
-        <Div>
+      <Img src={sushi} />
+    </Div>
+  );
+};
 
-        <Img src={sushi} />
-        </Div>
-         </Div>
-    )
-}
-
-export default StartSearching
-
+export default StartSearching;
 
 const Img = styled.img`
-height: 25em;
+  height: 25em;
+  grid-area: cartoon;
+  margin: auto;
+`;
 
-
+const Title = styled.h1`
+  display: inline-block;
+  grid-area: title;
+  width: fit-content;
+  margin: auto;
 `;
 
 const Div = styled.div`
-height: 30em;
-background-color: yellow;
-margin: 0;
-display: flex;
-justify-content: center;
+  height: 30em;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr;
+  grid-template-areas:
+    "title"
+    "cartoon";
 `;

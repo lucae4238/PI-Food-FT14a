@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import store from './Components/Redux/store';
 
 
+
 ReactDOM.render(
   <Provider store ={store}>
     <BrowserRouter>
@@ -21,3 +22,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+

@@ -16,9 +16,11 @@ const InputNum = ({ value, change, name }) => {
 
 const Num = styled(Input)`
   padding: -10px -20px;
-  width: 2em;
+  width: 3rem;
   font-size: 18px;
-  height: 3em;
+  height: 4rem;
+  margin: 0;
+  margin-top: 1rem;
 `;
 
 export default InputNum;

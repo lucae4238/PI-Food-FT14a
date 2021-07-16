@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import Button from '../../Styles/buttons'
 import {
   getRecipes,
   getTypes,
@@ -32,7 +33,7 @@ const SearchBar = () => {
   return (
     <Container>
       <form onSubmit={handleSubmit}>
-        <Search
+        <Search as='input'
           type="text"
           placeholder="Search recipes"
           name="input"
@@ -50,19 +51,13 @@ let Container = styled.div`
   justify-content: center;
   form {
     width: 20%;
-  }
+  }  
 `;
 
-let Search = styled.input`
+let Search = styled(Button)`
   outline: none;
-  color: palevioletred;
   padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 13px;
-  display: block;
-  background: papayawhip;
   width: 100%;
-  height: 3em;
 `;
 
 let Hidden = styled.input`

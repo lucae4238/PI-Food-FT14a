@@ -1,12 +1,11 @@
 import React from "react";
 import s from "styled-components";
-import MakeYourOwn from "../Buttons/LinkButton";
+import LinkButton from "../Buttons/LinkButton";
 import SearchBar from "./SearchBar";
 import { useSelector } from "react-redux";
 import CardContainer from "./Card/CardContainer";
 import StartSearching from "./StartSearching";
 import Loading from "./Loading";
-
 
 export const Home = () => {
   const reference = useSelector((state) => state.reference);
@@ -20,18 +19,23 @@ export const Home = () => {
 
   return (
     <Container>
-      <h1>{title} Recipes</h1>
-        <MakeYourOwn to='/makeRecipe' inner={'make your own'} />
+      <div className={"head"}>
+        <h1>{title} Recipes</h1>
+      </div>
+      <Div>
+        <LinkButton to="/makeRecipe" inner={"make your own"} className="link" />
+      </Div>
+
       <SearchBar />
-      {recipesUnfiltered.length === 0 && reference === "" && !loading && <StartSearching />}
+      {recipesUnfiltered.length === 0 && reference === "" && !loading && (
+        <StartSearching />
+      )}
       {loading ? <Loading /> : <CardContainer />}
     </Container>
   );
 };
 
 let Container = s.div`
-background-color: blue;
-
 display:table;
 width:100%;
 overflow-y: scroll;
@@ -39,10 +43,10 @@ height: 100vh;
 min-height: 45em;
 
 
+`;
 
-h1{
-    display: flex;
-    justify-content: center;
-    background-color: white;
-}
+let Div = s.div`
+position: absolute;
+top: 24%;
+left: 20%;
 `;

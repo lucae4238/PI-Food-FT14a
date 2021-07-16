@@ -1,31 +1,20 @@
-import React from 'react'
-import Container from '../../Styles/buttons'
+import React from "react";
+import Container from "../../Styles/buttons";
 import { Link } from "react-router-dom";
-import styled from 'styled-components';
+import styled from "styled-components";
 
-
-
-const LinkButton = ({to, inner}) => {
-    return (
-        <Div as='div'>
-            <Link to={to}>
-        <Container>
-            <h5>
-            {inner}
-            </h5>
-        </Container>
-
+const LinkButton = ({ to, inner }) => {
+  return (
+    <Div as="div">
+      <Link to={to}>
+        <Container>{inner}</Container>
       </Link>
-        </Div>
-    )
-}
+    </Div>
+  );
+};
 
 const Div = styled.button`
-display: inline-block;
+  display: inline-block;
 `;
 
-export default LinkButton
-
-
-
-
+export default LinkButton;

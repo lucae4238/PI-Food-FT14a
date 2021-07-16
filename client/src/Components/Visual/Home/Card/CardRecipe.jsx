@@ -11,25 +11,30 @@ const RecipeCard = ({ name = 0, img, id, diets = [], score }) => {
       }}
     >
       <Link to={`/recipe/${id}`}>
-
-
-      <Div>
-      <DynamicColor color={score} size='25px'>{score}</DynamicColor>
-
-      {diets.length === 0 ? <h4>no diets associated</h4> : <h4>{diets}</h4>}
-      </Div>
+        <Div>
         <h3>{name}</h3>
+        <More>
+
+          <DynamicColor color={score} size="25px">
+            {score}
+          </DynamicColor>
+
+          {diets.length === 0 ? <h4>no diets associated</h4> : <h4>{diets}</h4>}
+        </More>
+        </Div>
       </Link>
     </Container>
   );
 };
 
+const More = styled.div`
 
-
-
-
+display: flex;
+`;
 
 let Container = styled.div`
+overflow: hidden;
+
 a{
   text-decoration: none;
 }
@@ -40,35 +45,66 @@ a{
   min-height: 15em;
   max-height: 16em;
   border-radius: 13px;
-  h3 {
-    display: flex;
-    align-items: center;
-    padding: 5px 10px;
-    background: papayawhip;
-    color: palevioletred;
-    position: relative;
-    border-radius: 0 0 13px 13px;
-    top: 44%;
-    min-height: 3em;
-    }
+  
+  transition: box-shadow 0.4s ease;
+  &:hover {
+    box-shadow: 0px 0px 49px 5px rgba(0, 0, 0, 0.3);
   }
-
 `;
-
 
 const Div = styled.div`
-background: papayawhip;
-visibility: hidden;
+  background: rgba(255, 255, 255, 0.95);
+position: relative;
+top: 74%;
+color: palevioletred;
+color: black;
 
-a{
-  text-decoration: none;
-}
+display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: 0.5fr 2fr;
+grid-template-areas: 
+"name"
+"extra";
 
-${Container}:hover & {
-  visibility: visible;
-}
+transition: all 0.5s;
+  a {
+    text-decoration: none;
+  }
+
+  ${Container}:hover & {
+    transform: translateY(-40%)
+  };
+
+  span{
+    // background-color: rgb(215,215,215);
+    // background-color:palevioletred;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    height: max-content;
+    margin: 1rem;
+    // color: black;
+  }
+
+
+padding: 0;
+
+  h3{
+    // color: palevioletred;
+    grid-area: name;
+    margin: 10px;
+    margin-bottom:0;
+    align-items: center;
+    padding: 5px 10px;
+    min-height: 3em;
+  }
+
+  div{
+  grid-area: extra;
+  }
+height: 13rem;
+
+
 
 `;
-
 
 export default RecipeCard;

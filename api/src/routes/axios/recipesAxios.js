@@ -21,7 +21,7 @@ async function recipeName(name) {
       return resolve;
     }
   } catch (error) {
-    console.log("error en el axios", error);
+    console.log("error en el axios");
   }
 }
 
@@ -56,12 +56,13 @@ async function recipeId(id) {
     return nested;
   });
 
+  const text = data.summary.replace(/<[^>]+>/g, '');
 
   let obj = {
     name: data.title,
     id: data.id,
     image: data.image,
-    summary: data.summary,
+    summary: text,
     dishTypes: data.dishTypes,
     diets: filtered,
     healthScore: data.healthScore,

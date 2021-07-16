@@ -8,7 +8,9 @@ import Button from "../../Styles/buttons";
 
 import Input from "../../Styles/input";
 import InputNum from "../Buttons/InputNum";
-import GoHome from "../Buttons/GoHome";
+
+import "./Form.css";
+import LinkButton from "../Buttons/LinkButton";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -32,6 +34,16 @@ const Form = () => {
   const addStep = () => {
     let step = [...part];
     step[1].push([...stepModel]);
+    setPart(step);
+  };
+
+  const removeStep = () => {
+    console.log('entre')
+    let step = [...part];
+    console.log(`step[1].length`, step[1].length)
+    if (step[1].length > 1) {
+      step[1].pop();
+    }
     setPart(step);
   };
 
@@ -61,7 +73,7 @@ const Form = () => {
     setDone(true);
     setDanger(false);
     setSubmission({ ...initialState });
-    console.log(`submission`, submission);
+    setPart(["", [[...stepModel]]]);
   };
 
   const handleSubmissionChange = (e) => {
@@ -73,56 +85,67 @@ const Form = () => {
     const { name, checked } = e.target;
     dietList[name] = checked;
   };
-
   return (
-    <Container>
-      {!done && <h1>Submit your own recipe!</h1>}
-      <GoHome top={'3%'}/>
-
-      {done ? (
+    <div>
+      {/* <GoHome top={"3%"} /> */}
+      <div className='head'>{!done && <h1>Submit your own recipe!</h1>}</div>
+      {done && (
         <>
           <ThanksForSubmitting />
           <Button onClick={() => setDone(false)}>Submit another recipe</Button>
         </>
-      ) : (
-        <FormContainer onSubmit={handleSubmit}>
-          <Send type="submit">Submit</Send>
-          <div>
-            <div>
+      )}
+
+      {!done && (
+        <form className="containerForm" onSubmit={handleSubmit}>
+          <div className="buttonarea">
+            <Button type="submit">Submit</Button>
+            <LinkButton to="/home" inner="go home" />
+          </div>
+          <div className="infoInput">
+            <div className="top">
               <Title
                 danger={danger && "red"}
                 type="text"
-                placeholder={danger ? "title is required" : "title *"}
+                placeholder={danger ? "A title is required" : "Title *"}
                 name="name"
                 value={submission.name}
                 onChange={handleSubmissionChange}
               />
-              <InputNum
-                change={handleSubmissionChange}
-                value={submission.healthScore}
-                name="healthScore"
-              />
-              <InputNum
-                change={handleSubmissionChange}
-                value={submission.score}
-                name="score"
+              <div className="buttoninfo">
+                <label>healthScore</label>
+                <InputNum
+                  change={handleSubmissionChange}
+                  value={submission.healthScore}
+                  name="healthScore"
+                />
+              </div>
+              <div className="buttoninfo">
+                <label>score</label>
+                <InputNum
+                  change={handleSubmissionChange}
+                  value={submission.score}
+                  name="score"
+                />
+              </div>
+            </div>
+            <div className="summarybox">
+              <Summary
+                as="textarea"
+                danger={danger && "red"}
+                type="text"
+                placeholder={danger ? "A summary is required" : "Summary *"}
+                name="summary"
+                value={submission.summary}
+                onChange={handleSubmissionChange}
               />
             </div>
-            <Summary
-              danger={danger && "red"}
-              type="text"
-              placeholder={danger ? "summary is required" : "summary *"}
-              name="summary"
-              value={submission.summary}
-              onChange={handleSubmissionChange}
-            />
           </div>
-          <Div>
+          <div className="dietsInput">
             {dietsLoaded.map((e, index) => (
-              <Block>
+              <Block key={index}>
                 <input
                   id={index}
-                  key={index}
                   type="checkbox"
                   name={e.name}
                   value={e.name}
@@ -131,93 +154,92 @@ const Form = () => {
                 <label htmlFor={index}>{e.name}</label>
               </Block>
             ))}
-          </Div>
-          <div>
-            <h1>Instrucctions</h1>
-            {part.map((el, i) =>
-              i === 0 ? (
-                <Title
-                  key={i}
-                  placeholder="insert a title!"
-                  type="text"
-                  value={el}
-                  onChange={handleStepTitleChange}
-                />
-              ) : (
-                el.map((e, i) => (
-                  <Input
-                    key={i * 3}
-                    placeholder={`step  ${i + 1}`}
-                    type="text"
-                    id={i}
-                    name={`step ${i}`}
-                    value={e[1]}
-                    onChange={handleStepChange}
-                  />
-                ))
-              )
-            )}
-            <Button as="div" onClick={addStep}>
-              {" "}
-              Add step
-            </Button>
           </div>
-        </FormContainer>
+          <div className="instructionsInput">
+            <h1 className="header">Instrucctions</h1>
+            <div className="insertTitle">
+              <Title
+                placeholder="insert a title!"
+                type="text"
+                value={part[0]}
+                onChange={handleStepTitleChange}
+              />
+            </div>
+
+            <div className="insertSteps">
+              {part.map(
+                (el, i) =>
+                  i !== 0 &&
+                  el.map((e, i) => (
+                    <Input
+                      key={i}
+                      placeholder={`step  ${i + 1}`}
+                      type="text"
+                      id={i}
+                      name={`step ${i}`}
+                      value={e[1]}
+                      onChange={handleStepChange}
+                    />
+                  ))
+              )}
+            </div>
+            <div className="addStep">
+              <Add as="div" onClick={addStep}> 
+                Add Step
+              </Add>
+              <Add as="div" onClick={removeStep}>
+                Remove Step
+              </Add>
+            </div>
+          </div>
+        </form>
       )}
-    </Container>
+    </div>
   );
 };
 
 export default Form;
 
-const Div = styled.div`
-  background-color: grey;
-  height: 20em;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  width: max-content;
+const Add = styled(Button)`
+  width: 8em;
+  align-items: center;
+  margin: 10px 10px 0px 10px;
 `;
 
 const Block = styled.div`
-  border: 1px solid black;
+  padding: 12px;
   display: inline-block;
+  border: ${(props) => props.theme.glassBorder};
+  background: ${(props) => props.theme.glassWhite};
 
-  vertical-align: middle;
+  &:hover {
+    box-shadow: ${(props) => props.theme.hoverShadow};
+  }
+
   position: relative;
-  bottom: 1px;
+  transition: box-shadow 0.2s ease;
+
   label {
-    vertical-align: top;
-    background-color: white;
+    color: black;
+    margin-right: 2em;
   }
 `;
 
 const Title = styled(Input)`
   font-weight: 700;
   font-size: 27px;
-  width: 13em;
+  width: 24rem;
+  margin-left: 13px;
 
-  ::placeholder,
-  ::-webkit-input-placeholder {
+  ::placeholder {
     font-size: 27px;
   }
 `;
 
 const Summary = styled(Input)`
-  width: 50em;
+  width: 670px;
+  height: 175px;
   padding-bottom: 130px;
-`;
-
-const FormContainer = styled.form`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-`;
-
-const Container = styled.div`
-  height: max-content;
-`;
-
-const Send = styled(Button)`
-  position: absolute;
-  height: 3em;
+  font-family: "Helvetica Neue", serif;
+  margin-bottom: 0;
 `;

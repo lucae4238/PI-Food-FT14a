@@ -1,56 +1,86 @@
+
+html{
+  --background:rgba(255, 255, 255, 0.35);
+}
+
 .container{
     display: grid;
     height: 100vh;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 3fr 1fr 3fr;
+    grid-template-rows: 1fr 1fr 3fr 6em  1fr 3fr;
     grid-template-areas:
       "title title"
+      "diets diets"
       "summary img"
       "dishTypes score"
+      "hideshow hideshow"
       "instructions instructions";
     grid-gap: 0.2rem;
+    
+  }
+
+  .diets{
+    background: orange;
+    /* height: 3rem; */
   }
   
+.hideshow{
+  /* background: yellow; */
+  display: flex;
+  justify-content: center;
+}
+
   .title{
     margin: 0;
-    background: grey;
-    grid-area: title
+    /* background: grey; */
+    grid-area: title;
+    /* background: rgba(255, 255, 255, 0.75); */
   }
   
   .summary{
-    background: red;
-    grid-area: summary
+    /* background: red; */
+    
+    font-size: 20px;
+    grid-area: summary;
+    max-width: 40em;
+    white-space: pre-line;
+    word-wrap: break-word;
+    background: var(--background);
+    
   }
+ 
   
   .img{
-    background: purple;
+    /* background: purple; */
     grid-area: img;
   }
   
   .dishTypes{
-    background: blue;
+    /* background: blue; */
     grid-area: dishTypes;
+    background: var(--background);
   }
   
   .score{
-    background: #add8e6;
+    /* background: #add8e6; */
     grid-area: score;
+    background: var(--background);
   }
   
   .instructions{
-     background: yellow;
-    grid-area: instructions
+    grid-area: instructions;
   }
   
-  @media only screen and (max-width: 550px){
+  @media (max-width: 850px){
     .container{
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 3fr 3fr 1fr 3fr;
+      grid-template-rows: 1fr 3fr 3fr 1fr 1fr 3fr;
         grid-template-areas:
           "title title"
           "img img"
           "summary summary"
           "dishTypes score"
+          'hideshow hideshow'
           "instructions instructions"
           
     }

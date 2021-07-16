@@ -1,47 +1,32 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import "./Menu.css";
 import DietsDiv from "./DietsDiv";
 import { sortName, sortScore } from "../../Redux/actions";
 import ClearFilters from "../Buttons/Filters/ClearFilters";
 import FilterDiv from "./SortDiv";
+import useHandleClick from "../../Custom Hooks/useHandleClick";
+import styled from "styled-components";
+import Button from "../../Styles/buttons";
 
 const Menu = () => {
   const reference = useRef(null);
-  const [bool, setBool] = useState(false);
+  const [bool, setBool] = useHandleClick(reference, false);
   const recipes = useSelector((state) => state.recipesLoaded);
-
   const onClick = () => setBool(!bool);
 
-  useEffect(() => {
-    const pageClickEvent = (e) => {
-      if (reference.current !== null && !reference.current.contains(e.target)) {
-        setBool(!bool);
-      }
-    };
-    if (bool) {
-      window.addEventListener("click", pageClickEvent);
-    }
-    return () => {
-      window.removeEventListener("click", pageClickEvent);
-    };
-  }, [bool]);
-
   return (
-    <div className="menu-container">
+    <div className={`menu-container`}>
       {!(recipes.length < 1) && (
-        <button onClick={onClick} className="menu-trigger">
+        <Trigger onClick={onClick}>
           <span>Filter</span>
-        </button>
+        </Trigger>
       )}
-      <nav ref={reference} className={`menu ${bool && "active"}`}>
+      <Nav ref={reference} className={`menu ${bool && "active"}`}>
         <ul>
-          <li>
-            <h3>
 
-            Results: {recipes.length}
-            </h3>
-            </li>
+            <h3>Results: {recipes.length}</h3>
+
           <li>
             <FilterDiv
               innerLeft={"Desc"}
@@ -71,9 +56,55 @@ const Menu = () => {
             <ClearFilters />
           </li>
         </ul>
-      </nav>
+      </Nav>
     </div>
   );
 };
+
+const Trigger = styled(Button)`
+  position: absolute;
+  top: 24%;
+  right: 20%;
+
+  span {
+    font-weight: 700;
+    font-size: 14px;
+    margin: 10px;
+  }
+`;
+
+const Nav = styled.nav`
+  position: absolute;
+  top: 31%;
+  right: 12%;
+  width: 300px;
+
+  visibility: hidden;
+  transform: translateY(200px);
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+
+  border: ${(props) => props.theme.glassBorder};
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+
+  .active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  };
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  };
+
+  li {
+    border-top: 1px solid grey;
+  };
+`;
 
 export default Menu;

@@ -38,9 +38,7 @@ const Form = () => {
   };
 
   const removeStep = () => {
-    console.log('entre')
     let step = [...part];
-    console.log(`step[1].length`, step[1].length)
     if (step[1].length > 1) {
       step[1].pop();
     }
@@ -93,6 +91,7 @@ const Form = () => {
         <>
           <ThanksForSubmitting />
           <Button onClick={() => setDone(false)}>Submit another recipe</Button>
+          <LinkButton to="/home" inner="go home" />
         </>
       )}
 
@@ -203,7 +202,9 @@ export default Form;
 const Add = styled(Button)`
   width: 8em;
   align-items: center;
-  margin: 10px 10px 0px 10px;
+
+  margin: 0px 10px 0px 10px;
+
 `;
 
 const Block = styled.div`

@@ -52,7 +52,7 @@ const CardContainer = () => {
       </Container>
 
       {results.length !== 0 && loading === false && <Pagehandler />}
-      {results.length > 1 && loading === false && <Menu />}
+      {results.length > 0 && loading === false && <Menu />}
     </>
   );
 };

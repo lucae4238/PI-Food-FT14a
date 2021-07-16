@@ -7,15 +7,16 @@ const Instruccions = ({ array, action }) => {
     <Div>
       {array.map((el) =>
         el.map((el, index) =>
-          index === 0 ? (
-            el === "" ? (
-              <Container>
+        index === 0 ? (
+          el === "" ? (
+            <Container>
                 <span>instructions</span>
                 <Button onClick={action}> Hide</Button>
               </Container>
             ) : (
               <Container>
                 <h3>{el}</h3>
+                <Button onClick={action}> Hide</Button>
               </Container>
             )
           ) : (
@@ -44,6 +45,8 @@ const Container = styled.div`
     font-size: 26px;
   }
   margin-bottom: 1rem;
+
+  align-items: center;
 `;
 
 const Container2 = styled.div`

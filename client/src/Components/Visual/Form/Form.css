@@ -111,8 +111,14 @@ justify-content:flex-start;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
+  
+  
 }
 
+
+.addStep div button{
+  align-items: center;
+}
 @media (max-width: 1200px) {
   .containerForm {
     grid-template-columns: 1fr;

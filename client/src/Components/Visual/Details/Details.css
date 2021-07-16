@@ -7,21 +7,15 @@ html{
     display: grid;
     height: 100vh;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 3fr 6em  1fr 3fr;
+    grid-template-rows: 1fr 3fr 6em  1fr 3fr;
     grid-template-areas:
       "title title"
-      "diets diets"
       "summary img"
       "dishTypes score"
       "hideshow hideshow"
       "instructions instructions";
     grid-gap: 0.2rem;
     
-  }
-
-  .diets{
-    background: orange;
-    /* height: 3rem; */
   }
   
 .hideshow{
@@ -42,7 +36,6 @@ html{
     
     font-size: 20px;
     grid-area: summary;
-    max-width: 40em;
     white-space: pre-line;
     word-wrap: break-word;
     background: var(--background);
@@ -53,6 +46,7 @@ html{
   .img{
     /* background: purple; */
     grid-area: img;
+    background: var(--background);
   }
   
   .dishTypes{

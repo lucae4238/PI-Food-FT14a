@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import DynamicColor from "../../../Styles/DynamicColor";
 
 const RecipeCard = ({ name = 0, img, id, diets = [], score }) => {
+  let formated = [];
+  diets.map((e) => formated.push(" • ", e));
+
   return (
     <Container
       style={{
@@ -12,15 +15,18 @@ const RecipeCard = ({ name = 0, img, id, diets = [], score }) => {
     >
       <Link to={`/recipe/${id}`}>
         <Div>
-        <h3>{name}</h3>
-        <More>
+          <h3>{name}</h3>
+          <More>
+            <DynamicColor color={score} size="25px">
+              {score}
+            </DynamicColor>
 
-          <DynamicColor color={score} size="25px">
-            {score}
-          </DynamicColor>
-
-          {diets.length === 0 ? <h4>no diets associated</h4> : <h4>{diets}</h4>}
-        </More>
+            {diets.length === 0 ? (
+              <h4>no diets associated</h4>
+            ) : (
+              <h4>{formated}</h4>
+            )}
+          </More>
         </Div>
       </Link>
     </Container>
@@ -28,16 +34,15 @@ const RecipeCard = ({ name = 0, img, id, diets = [], score }) => {
 };
 
 const More = styled.div`
-
-display: flex;
+  display: flex;
 `;
 
 let Container = styled.div`
-overflow: hidden;
+  overflow: hidden;
 
-a{
-  text-decoration: none;
-}
+  a {
+    text-decoration: none;
+  }
   background-repeat: repeat;
   text-align: center;
   margin: 3em;
@@ -45,7 +50,7 @@ a{
   min-height: 15em;
   max-height: 16em;
   border-radius: 13px;
-  
+
   transition: box-shadow 0.4s ease;
   &:hover {
     box-shadow: 0px 0px 49px 5px rgba(0, 0, 0, 0.3);
@@ -54,28 +59,28 @@ a{
 
 const Div = styled.div`
   background: rgba(255, 255, 255, 0.95);
-position: relative;
-top: 74%;
-color: palevioletred;
-color: black;
+  position: relative;
+  top: 74%;
+  color: palevioletred;
+  color: black;
 
-display: grid;
-grid-template-columns: 1fr;
-grid-template-rows: 0.5fr 2fr;
-grid-template-areas: 
-"name"
-"extra";
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.5fr 2fr;
+  grid-template-areas:
+    "name"
+    "extra";
 
-transition: all 0.5s;
+  transition: all 0.5s;
   a {
     text-decoration: none;
   }
 
   ${Container}:hover & {
-    transform: translateY(-40%)
-  };
+    transform: translateY(-40%);
+  }
 
-  span{
+  span {
     // background-color: rgb(215,215,215);
     // background-color:palevioletred;
     padding: 0.5rem;
@@ -85,26 +90,22 @@ transition: all 0.5s;
     // color: black;
   }
 
+  padding: 0;
 
-padding: 0;
-
-  h3{
+  h3 {
     // color: palevioletred;
     grid-area: name;
     margin: 10px;
-    margin-bottom:0;
+    margin-bottom: 0;
     align-items: center;
     padding: 5px 10px;
     min-height: 3em;
   }
 
-  div{
-  grid-area: extra;
+  div {
+    grid-area: extra;
   }
-height: 13rem;
-
-
-
+  height: 13rem;
 `;
 
 export default RecipeCard;

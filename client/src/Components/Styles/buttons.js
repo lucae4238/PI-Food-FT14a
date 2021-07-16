@@ -27,6 +27,7 @@ let Container = styled.button`
     margin: 0;
   }
   color: black;
+
 `;
 
 export default Container;

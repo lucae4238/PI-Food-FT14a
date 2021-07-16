@@ -17,7 +17,7 @@ const Menu = () => {
 
   return (
     <div className={`menu-container`}>
-      {!(recipes.length < 1) && (
+      {(recipes) && (
         <Trigger onClick={onClick}>
           <span>Filter</span>
         </Trigger>
@@ -53,7 +53,7 @@ const Menu = () => {
             <DietsDiv />
           </li>
           <li>
-            <ClearFilters />
+            <ClearFilters/>
           </li>
         </ul>
       </Nav>
@@ -63,7 +63,7 @@ const Menu = () => {
 
 const Trigger = styled(Button)`
   position: absolute;
-  top: 24%;
+  top: 23.8%;
   right: 20%;
 
   span {
@@ -76,7 +76,7 @@ const Trigger = styled(Button)`
 const Nav = styled.nav`
   position: absolute;
   top: 31%;
-  right: 12%;
+  right: 13%;
   width: 300px;
 
   visibility: hidden;
@@ -104,7 +104,11 @@ const Nav = styled.nav`
 
   li {
     border-top: 1px solid grey;
-  };
+    button{
+      border: ${props => props.theme.darkBorder}
+    }
+    }
+  }
 `;
 
 export default Menu;

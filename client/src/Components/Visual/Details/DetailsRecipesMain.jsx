@@ -27,7 +27,7 @@ const DetailsRecipes = (props) => {
 
   const click = () => setBool(!bool);
 
-  if (!details["name"]) {
+  if (details["message"]) {
     return <Errorhandler />;
   } else
     return (

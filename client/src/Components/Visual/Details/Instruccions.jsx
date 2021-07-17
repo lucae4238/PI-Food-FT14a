@@ -33,7 +33,7 @@ const Instruccions = ({ array, action }) => {
 const Container = styled.div`
   display: flex;
   justify-content: space-around;
-  min-width: 15em;
+  min-width: 55em;
   margin-bottom: 1rem;
   align-items: center;
   span {

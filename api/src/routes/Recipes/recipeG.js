@@ -10,7 +10,7 @@ router.get("/", async function (req, res) {
   let { name } = req.query;
 
   if (!name || name === "" || name === " ")
-    return res.status(404).json({ message: "must send a valid name in query" });
+    return res.status(400).json({ message: "must send a valid name in query" });
 
   try {
     //finding in database
@@ -71,7 +71,7 @@ router.get("/:id/", async function (req, res) {
         ],
       });
       if (dbResult === null)
-        return res.json({ mesage: "error finding with id" });
+        return res.json({ message: "error finding with id" });
 
       let formated = [];
       dbResult.diets.map((e) => formated.push(e["name"]));
@@ -94,11 +94,11 @@ router.get("/:id/", async function (req, res) {
       //format isnt UUID, find in API
       let apiResult = await recipeId(id);
       return apiResult.length === 0
-        ? res.json({ mesage: "error finding with id" })
+        ? res.json({ message: "error finding with id" })
         : res.json(apiResult);
     }
   } catch (error) {
-    console.log("error getting by ID");
+    console.log("error getting by ID",error);
   }
 });
 

@@ -87,13 +87,13 @@ const Form = () => {
         <>
           <Head>
             <h1>Thanks for Submitting</h1>
-          </Head>
           <CenterButtons>
             <Button onClick={() => setDone(false)}>
               Submit another recipe
             </Button>
             <LinkButton to="/home" inner="go home" />
           </CenterButtons>
+          </Head>
         </>
       ) : (
         <>

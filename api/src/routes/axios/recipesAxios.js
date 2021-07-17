@@ -69,6 +69,7 @@ async function recipeId(id) {
   return obj;
 } catch (error) {
     console.log('error axios by id')
+    return []
 }
 }
 

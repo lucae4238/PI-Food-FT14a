@@ -10,7 +10,7 @@ router.get("/", async function (req, res) {
   let { name } = req.query;
 
   if (!name || name === "" || name === " ")
-    return res.status(400).json({ message: "must send a valid name in query" });
+    return res.status(200).json({ message: "must send a valid name in query" });
 
   try {
     //finding in database

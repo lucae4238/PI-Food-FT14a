@@ -24,10 +24,14 @@ xdescribe("GET /recipes?name=", () => {
   xit("should get 200", () => agent.get("/recipes?name=milanesa").expect(200));
 
   it("shoud get 400 if theres no query parameter", () => {
-    agent.get("/recipes").then((res) => expect(res).to.have.status(400));
+    return agent.get("/recipes").then((res) => {
+      expect(res.body).to.be.deep.equal({
+        message: "must send a valid name in query",
+      });
+    });
   });
 
-  xit("should return an array of results", () =>
+  it("should return an array of results", () =>
     agent
       .get("/recipes?name=salad")
       .expect(200)
@@ -36,7 +40,7 @@ xdescribe("GET /recipes?name=", () => {
         // expect(Array.isArray(res.body)).to.be.true;
       }));
 
-  xit("should return properties of diets", () =>
+  it("should return properties of diets", () =>
     agent.get("/recipes?name=salad").then((res) => {
       expect(res.body[0]).to.have.all.keys(
         "name",

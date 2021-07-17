@@ -1,5 +1,6 @@
 const axios = require("axios").default;
 const { API_KEY } = process.env;
+const RecipeFormater = require("../controllers/FormatRecipe");
 
 async function recipeName(name) {
   try {
@@ -9,29 +10,31 @@ async function recipeName(name) {
     let resolve = [];
     if (result.data.results) {
       result.data.results.map((item) => {
-        let obj = {
-          name: item.title,
-          id: item.id,
-          image: item.image,
-          score: item.spoonacularScore,
-          diets: item.diets,
-        };
+        let obj = RecipeFormater(
+          item.id,
+          item.title,
+          item.spoonacularScore,
+          item.image,
+          item.diets
+        );
         resolve.push(obj);
       });
       return resolve;
     }
   } catch (error) {
-    console.log("error en el axios");
+    console.log("error in axios by name");
   }
 }
 
 async function recipeId(id) {
+  try {
+    
+  
   let item = await axios.get(
     `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
   );
   let data = item.data;
 
-  
   const dietList = [...data.diets];
   data.vegetarian && dietList.push("vegetarian");
   data.vegan && dietList.push("vegan");
@@ -42,21 +45,14 @@ async function recipeId(id) {
   let stepsFormated = [];
   data.analyzedInstructions.map((item) => {
     let nested = [];
-    
-
-    
     item.steps.map((step) => {
-      // nested.push({ number: step.number, step: step.step });
-      nested.push([step.number,step.step])
-      // stepsFormated.push(step.step)
+      nested.push([step.number, step.step]);
     });
-    stepsFormated.push([item.name,nested]);
-
-    // let big = { name: item.name, steps: nested };
+    stepsFormated.push([item.name, nested]);
     return nested;
   });
 
-  const text = data.summary.replace(/<[^>]+>/g, '');
+  const text = data.summary.replace(/<[^>]+>/g, "");
 
   let obj = {
     name: data.title,
@@ -67,11 +63,13 @@ async function recipeId(id) {
     diets: filtered,
     healthScore: data.healthScore,
     score: data.spoonacularScore,
-    steps: stepsFormated
+    steps: stepsFormated,
   };
 
-
   return obj;
+} catch (error) {
+    console.log('error axios by id')
+}
 }
 
 module.exports = {

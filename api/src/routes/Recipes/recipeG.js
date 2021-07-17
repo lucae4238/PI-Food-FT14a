@@ -4,10 +4,10 @@ const { Recipe, Diet } = require("../../db");
 const { recipeName, recipeId } = require("../axios/recipesAxios");
 const { FoCDietG } = require("../controllers/dietFoC");
 const Op = Sequelize.Op;
+const RecipeFormater = require("../controllers/FormatRecipe");
 
 router.get("/", async function (req, res) {
   let { name } = req.query;
-  //page is for paged results, marks wich page must be shown
 
   if (!name || name === "" || name === " ")
     return res.status(404).json({ message: "must send a valid name in query" });
@@ -27,21 +27,14 @@ router.get("/", async function (req, res) {
       let diets = e["diets"];
       let formated = [];
       diets.map((d) => formated.push(d["name"]));
-
-      let obj = {
-        id: e["id"],
-        name: e["name"],
-        score: e["score"],
-        image: e["image"],
-        diets: formated,
-      };
+      let obj = RecipeFormater(e.id, e.name, e.score, e.image, formated);
       dbFormated.push(obj);
     });
 
     //finding in API
     let apiResult = await recipeName(name);
 
-    if (apiResult == null) return res.json({ message: "key over used" });
+    if (apiResult == null) return res.json({ message: "key over-used" });
 
     //adding found diets to DB
     FoCDietG(apiResult);
@@ -56,7 +49,7 @@ router.get("/", async function (req, res) {
 
     res.json(total);
   } catch (error) {
-    console.log("error in get ", error);
+    console.log("error in get ");
   }
 });
 
@@ -85,14 +78,15 @@ router.get("/:id/", async function (req, res) {
 
       let obj = {
         id: dbResult["id"],
-        summary: dbResult["summary"],
         name: dbResult["name"],
         score: dbResult["score"],
+        image: dbResult["image"],
+        diets: formated,
+
+        summary: dbResult["summary"],
         healthScore: dbResult["healthScore"],
         steps: dbResult["steps"],
-        image: dbResult["image"],
         dishTypes: dbResult["dishTypes"],
-        diets: formated,
       };
 
       return res.json(obj);
@@ -104,7 +98,7 @@ router.get("/:id/", async function (req, res) {
         : res.json(apiResult);
     }
   } catch (error) {
-    console.log("error getting by ID", error);
+    console.log("error getting by ID");
   }
 });
 

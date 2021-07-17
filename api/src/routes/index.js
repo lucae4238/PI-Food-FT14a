@@ -14,10 +14,6 @@ router.use('/recipe', recipeP)
 
 
 
-router.get('/', async function(req,res){
-    res.send('start')
-})
-
 
 
 module.exports = router;

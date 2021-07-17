@@ -14,9 +14,23 @@ describe('Recipe model', () => {
           .then(() => done(new Error('It requires a valid name')))
           .catch(() => done());
       });
+      it('should throw an error if name isnt a string', (done) => {
+        Recipe.create({name: 4})
+        .then(() => done(new Error('It requires a valid name')))
+        .catch(() => done())
+      })
+
+
       it('should work when its a valid name', () => {
         Recipe.create({ name: 'Milanesa a la napolitana' });
       });
+      it('should throw an error if summary is null', () => {
+        Recipe.create({name: 'test name', summar: null})
+        .then(() => done('it shouldnt be created'))
+        .catch(() => done())
+      })
     });
   });
 });
+
+

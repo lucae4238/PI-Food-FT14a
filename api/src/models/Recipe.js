@@ -49,9 +49,6 @@ module.exports = (sequelize) => {
     image: {
       type: DataTypes.TEXT
     }, 
-    dishTypes: {
-      type: DataTypes.ARRAY(DataTypes.STRING)
-    }, 
   });
 };
 

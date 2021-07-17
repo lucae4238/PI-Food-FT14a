@@ -8,11 +8,7 @@ const RecipeCard = ({ name = 0, img, id, diets = [], score }) => {
   diets.map((e) => formated.push(" • ", e));
 
   return (
-    <Container
-      style={{
-        background: `url(${img})center / cover`,
-      }}
-    >
+    <Container img={img}>
       <Link to={`/recipe/${id}`}>
         <Div>
           <h3>{name}</h3>
@@ -20,12 +16,7 @@ const RecipeCard = ({ name = 0, img, id, diets = [], score }) => {
             <DynamicColor color={score} size="25px">
               {score}
             </DynamicColor>
-
-            {diets.length === 0 ? (
-              <h4>no diets associated</h4>
-            ) : (
-              <h4>{formated}</h4>
-            )}
+            <h4>{diets.length === 0 ? 'no diets associated' : formated}</h4>
           </More>
         </Div>
       </Link>
@@ -38,11 +29,12 @@ const More = styled.div`
 `;
 
 let Container = styled.div`
-  overflow: hidden;
-
+  background: ${(props) => `url(${props.img})center / cover`};
   a {
     text-decoration: none;
   }
+  overflow: hidden;
+
   background-repeat: repeat;
   text-align: center;
   margin: 3em;
@@ -61,7 +53,6 @@ const Div = styled.div`
   background: rgba(255, 255, 255, 0.95);
   position: relative;
   top: 74%;
-  color: palevioletred;
   color: black;
 
   display: grid;
@@ -72,28 +63,21 @@ const Div = styled.div`
     "extra";
 
   transition: all 0.5s;
-  a {
-    text-decoration: none;
-  }
 
   ${Container}:hover & {
     transform: translateY(-40%);
   }
 
   span {
-    // background-color: rgb(215,215,215);
-    // background-color:palevioletred;
     padding: 0.5rem;
     border-radius: 2rem;
     height: max-content;
     margin: 1rem;
-    // color: black;
   }
 
   padding: 0;
 
   h3 {
-    // color: palevioletred;
     grid-area: name;
     margin: 10px;
     margin-bottom: 0;

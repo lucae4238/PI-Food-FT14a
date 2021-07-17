@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../Buttons/TemplateButton";
+import Button from "../../Buttons/TemplateButton";
+
+
 
 const FilterDiv = ({
   innerLeft,

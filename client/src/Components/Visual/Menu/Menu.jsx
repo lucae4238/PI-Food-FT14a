@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import "./Menu.css";
-import DietsDiv from "./DietsDiv";
+import DietsDiv from "./Divs/DietsDiv";
 import { sortName, sortScore } from "../../Redux/actions";
-import ClearFilters from "../Buttons/Filters/ClearFilters";
-import FilterDiv from "./SortDiv";
+import ClearFilters from "./Filters/ClearFilters";
+import FilterDiv from "./Divs/SortDiv";
 import useHandleClick from "../../Custom Hooks/useHandleClick";
 import styled from "styled-components";
 import Button from "../../Styles/buttons";
@@ -108,7 +108,7 @@ const Nav = styled.nav`
       border: ${props => props.theme.darkBorder}
     }
     }
-  }
+  
 `;
 
 export default Menu;

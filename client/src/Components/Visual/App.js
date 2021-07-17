@@ -14,9 +14,6 @@ function App() {
   return (
     <>
     <ThemeProvider theme={theme}>
-
-    
-      {/* <Route path="/" component={Top} /> */}
       <Switch>
       <Route exact path="/" component={GetStarted}/>
       <Route exact path="/home" component={Home} />
@@ -31,7 +28,7 @@ function App() {
 
 
 const theme = {
-  glassWhite: 'rgb(255, 255, 255, 0.35)',
+  glassWhite: 'rgba(255, 255, 255, 0.35)',
   glassTransparent: 'rgba(255, 255, 255, 0.35)',
   glassBorder: '1px solid rgba(255, 255, 255, 0.18)',
   darkBorder: '1px solid rgba(55, 55, 55)',

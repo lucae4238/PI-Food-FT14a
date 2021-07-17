@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import CardContainer from "./Card/CardContainer";
 import StartSearching from "./StartSearching";
 import Loading from "./Loading";
+import Head from "../../Styles/Head";
+
 
 export const Home = () => {
   const reference = useSelector((state) => state.reference);
@@ -19,9 +21,9 @@ export const Home = () => {
 
   return (
     <Container>
-      <div className={"head"}>
+      <Head>
         <h1>{title} Recipes</h1>
-      </div>
+      </Head>
       <Div>
         <LinkButton to="/makeRecipe" inner={"make your own"} className="link" />
       </Div>

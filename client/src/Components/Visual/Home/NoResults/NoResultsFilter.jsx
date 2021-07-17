@@ -1,13 +1,15 @@
 import React from 'react'
-import ClearFilters from '../../Buttons/Filters/ClearFilters'
+import Head from '../../../Styles/Head'
+import ClearFilters from '../../Menu/Filters/ClearFilters'
+
 
 
 const NoResultsFilter = () => {
     return (
-        <div className={'head'}>
+        <Head>
         <h1>No results</h1>
 <ClearFilters />
-        </div>
+        </Head>
     )
 }
 

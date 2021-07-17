@@ -7,22 +7,15 @@ const Instruccions = ({ array, action }) => {
     <Div>
       {array.map((el) =>
         el.map((el, index) =>
-        index === 0 ? (
-          el === "" ? (
+          index === 0 ? (
             <Container>
-                <span>instructions</span>
-                <Button onClick={action}> Hide</Button>
-              </Container>
-            ) : (
-              <Container>
-                <h3>{el}</h3>
-                <Button onClick={action}> Hide</Button>
-              </Container>
-            )
+              <h3>{el || "instructions"}</h3>
+              <Button onClick={action}> Hide</Button>
+            </Container>
           ) : (
             el.map(
               (el) =>
-                el[0] !== "" && (
+                el[1] !== "" && (
                   <Container2>
                     <h5>
                       {el[0]} {el[1]}
@@ -41,20 +34,19 @@ const Container = styled.div`
   display: flex;
   justify-content: space-around;
   min-width: 15em;
+  margin-bottom: 1rem;
+  align-items: center;
   span {
     font-size: 26px;
   }
-  margin-bottom: 1rem;
-
-  align-items: center;
 `;
 
 const Container2 = styled.div`
   border: ${(props) => props.theme.glassBorder};
   background: ${(props) => props.theme.glassTransparent};
-  margin 3px;
+  margin: 3px;
   min-width: 15em;
-
+  width: 100%;
 `;
 
 const Div = styled.div`

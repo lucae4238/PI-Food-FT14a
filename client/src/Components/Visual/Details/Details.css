@@ -25,10 +25,9 @@ html{
 }
 
   .title{
-    margin: 0;
     /* background: grey; */
+    margin: 0;
     grid-area: title;
-    /* background: rgba(255, 255, 255, 0.75); */
   }
   
   .summary{

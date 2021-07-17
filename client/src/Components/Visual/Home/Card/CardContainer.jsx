@@ -1,12 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
 
-import Pagehandler from "../../Buttons/PageRef/Pagehandler";
+import Pagehandler from "../../Buttons/Pagehandler";
 import Menu from "../../Menu/Menu";
-import RecipeCard from "./CardRecipe";
+import RecipeCard from "./RecipeCard";
 import NoResultsFilter from "../NoResults/NoResultsFilter";
 import NoResultsSearch from "../NoResults/NoResultsSearch";
-import styled from "styled-components";
+
+
 
 const CardContainer = () => {
   const loading = useSelector((state) => state.loading);

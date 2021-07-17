@@ -10,6 +10,7 @@ const InputNum = ({ value, change, name }) => {
       value={value}
       color={value}
       onChange={change}
+      min={0} max={100}
     />
   );
 };

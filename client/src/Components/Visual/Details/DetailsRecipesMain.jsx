@@ -13,8 +13,7 @@ const DetailsRecipes = (props) => {
   const id = props.match.params.id;
   const dispatch = useDispatch();
   const details = useSelector((state) => state.recipeDetails);
-  const { name, summary, score, healthScore, diets, dishTypes, image, steps } =
-    details;
+  const { name, summary, score, healthScore, diets, dishTypes, image, steps } = details; //prettier-ignore
 
   const [bool, setBool] = useState(false);
 
@@ -33,7 +32,7 @@ const DetailsRecipes = (props) => {
   } else
     return (
       <>
-          <GoHome top="2%" inner="go home" />
+        <GoHome top="2%" inner="go home" />
         <div className={"container"}>
           <Container className={"title"}>
             <h1>{name}</h1>
@@ -43,7 +42,7 @@ const DetailsRecipes = (props) => {
           </Container>
 
           <Container className={"dishTypes"}>
-            <h3>Dish types</h3>
+            <h3>Dish types: </h3>
             {
               dietsList.length === 0 ? <h4>no dish types associated</h4> : dishList.map((i,index) => (<div key={index}><h4>{i}</h4></div>)) //prettier-ignore
             }
@@ -59,13 +58,13 @@ const DetailsRecipes = (props) => {
           <Container className={"img"}>
             <img src={image} alt={"recipe"} />
           </Container>
-          {!bool && stepList.length > 1 &&(
+          {!bool && stepList.length > 0 && (
             <Container className="hideshow">
               <Button onClick={click}>show instructions</Button>
             </Container>
           )}
 
-          {bool && stepList.length > 1 && (
+          {bool && stepList.length > 0 && (
             <Container className={"instructions"}>
               <Instruccions array={stepList} action={click} />
             </Container>
@@ -80,8 +79,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   h4 {
-    // color: grey;
-    margin-left: 5px;
+    margin-left: 10px;
   }
 `;
 

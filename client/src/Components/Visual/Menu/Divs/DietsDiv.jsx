@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import DietsFilter from "../Buttons/Filters/DietsFilter";
+import DietsFilter from '../Filters/DietsFilter';
 
 
 const DietsDiv = () => {

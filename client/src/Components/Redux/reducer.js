@@ -37,7 +37,7 @@ export function reducer(state = initialState, action) {
      case SET_LOADING: 
      return{
          ...state,
-         loading: state.loading === true ? false : true
+         loading: !state.loading
      };
 
      case SET_REFERENCE:

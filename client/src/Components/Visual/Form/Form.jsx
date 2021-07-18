@@ -3,15 +3,14 @@ import styled from "styled-components";
 import { postRecipe } from "../../Redux/actions";
 import { useDispatch } from "react-redux";
 import useDiets from "../../Custom Hooks/useDiets";
-import Button from "../../Styles/buttons";
 
+import Button from "../../Styles/buttons";
 import Input from "../../Styles/input";
 import InputNum from "../Buttons/InputNum";
-
-import "./Form.css";
 import LinkButton from "../Buttons/LinkButton";
 import CenterButtons from "../../Styles/centerButtons";
 import Head from "../../Styles/Head";
+import "./Form.css";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -46,7 +45,7 @@ const Form = () => {
     }
     setPart(step);
   };
-  
+
   const handleInstrucctions = (e) => {
     let { value, name, id } = e.target;
     let step = [...part];
@@ -59,19 +58,6 @@ const Form = () => {
     setPart([...step]);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (submission.name === "" || submission.summary === "")return setDanger(true); //prettier-ignore
-    Object.entries(dietList).map((e) => e[1] && submission.diets.push(e[0]));
-    submission.steps = [[...part]];
-    await dispatch(postRecipe(submission));
-
-    setDone(true);
-    setDanger(false);
-    setSubmission({ ...initialState });
-    setPart(["", [[...stepModel]]]);
-  };
-
   const handleSubmissionChange = (e) => {
     setSubmission({ ...submission, [e.target.name]: e.target.value });
   };
@@ -81,18 +67,30 @@ const Form = () => {
     dietList[name] = checked;
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (submission.name === "" || submission.summary === "")return setDanger(true); //prettier-ignore
+    Object.entries(dietList).map((e) => e[1] && submission.diets.push(e[0]));
+    submission.steps = [[...part]];
+    dispatch(postRecipe(submission));
+    setDone(true);
+    setDanger(false);
+    setSubmission({ ...initialState });
+    setPart(["", [[...stepModel]]]);
+  };
+
   return (
     <div>
       {done ? (
         <>
           <Head>
             <h1>Thanks for Submitting</h1>
-          <CenterButtons>
-            <Button onClick={() => setDone(false)}>
-              Submit another recipe
-            </Button>
-            <LinkButton to="/home" inner="go home" />
-          </CenterButtons>
+            <CenterButtons>
+              <Button onClick={() => setDone(false)}>
+                Submit another recipe
+              </Button>
+              <LinkButton to="/home" inner="go home" />
+            </CenterButtons>
           </Head>
         </>
       ) : (
@@ -109,7 +107,6 @@ const Form = () => {
               <div className="top">
                 <Title
                   danger={danger && "red"}
-                  type="text"
                   placeholder={danger ? "A title is required" : "Title *"}
                   name="name"
                   value={submission.name}
@@ -164,7 +161,6 @@ const Form = () => {
                 <Title
                   name="Title"
                   placeholder="insert a title!"
-                  type="text"
                   value={part[0]}
                   onChange={handleInstrucctions}
                 />
@@ -228,7 +224,9 @@ const Block = styled.div`
   }
 `;
 
-const Title = styled(Input)`
+const Title = styled(Input).attrs((props) => ({
+  type: "text",
+}))`
   font-weight: 700;
   font-size: 27px;
   width: 24rem;

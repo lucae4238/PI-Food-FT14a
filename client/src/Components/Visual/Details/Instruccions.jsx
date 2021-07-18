@@ -33,7 +33,7 @@ const Instruccions = ({ array, action }) => {
 const Container = styled.div`
   display: flex;
   justify-content: space-around;
-  min-width: 55em;
+  min-width: 50em;
   margin-bottom: 1rem;
   align-items: center;
   span {
@@ -45,13 +45,13 @@ const Container2 = styled.div`
   border: ${(props) => props.theme.glassBorder};
   background: ${(props) => props.theme.glassTransparent};
   margin: 3px;
-  min-width: 15em;
-  width: 100%;
+  width: 98vw;
 `;
 
 const Div = styled.div`
   align-items: center;
   font-size: 20px;
+  justify-content: center;
 `;
 
 export default Instruccions;

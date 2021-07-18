@@ -7,7 +7,7 @@ import { getDetails } from "../../Redux/actions";
 import Errorhandler from "../Errorhandler";
 import GoHome from "../Buttons/GoHome";
 import "./Details.css";
-// import LinkButton from "../Buttons/LinkButton";
+import Loading from "../Home/Loading";
 
 const DetailsRecipes = (props) => {
   const id = props.match.params.id;
@@ -16,35 +16,30 @@ const DetailsRecipes = (props) => {
   const { name, summary, score, healthScore, diets, dishTypes, image, steps } = details; //prettier-ignore
 
   const [bool, setBool] = useState(false);
-
-  let dietsList = diets ? diets : [];
-  let dishList = dishTypes ? dishTypes : [];
-  let stepList = steps ? steps : [];
+  const click = () => setBool(!bool);
 
   useEffect(() => {
     dispatch(getDetails(id));
   }, [id, dispatch]);
 
-  const click = () => setBool(!bool);
-
-  if (details["message"]) {
-    return <Errorhandler />;
-  } else
+  if (name && summary && diets && image && steps) {
     return (
       <>
+
         <GoHome top="2%" inner="go home" />
         <div className={"container"}>
           <Container className={"title"}>
             <h1>{name}</h1>
             {
-              dietsList.length === 0 ? <h4> • no diets associated</h4> : dietsList.map((i,index) => (<h4  key={index}> •{i}</h4>)) //prettier-ignore
+              diets ? diets.map((i,index) => (<h4  key={index}> •{i}</h4>)) : <h4> • no diets associated</h4> //prettier-ignore
             }
           </Container>
 
           <Container className={"dishTypes"}>
             <h3>Dish types: </h3>
             {
-              dietsList.length === 0 ? <h4>no dish types associated</h4> : dishList.map((i,index) => (<div key={index}><h4>{i}</h4></div>)) //prettier-ignore
+              dishTypes ? dishTypes
+              .map((i,index) => (<div key={index}><h4>{i} •</h4></div>)): <h4>no dish types associated</h4> //prettier-ignore
             }
           </Container>
           <Container className={"score"}>
@@ -58,20 +53,23 @@ const DetailsRecipes = (props) => {
           <Container className={"img"}>
             <img src={image} alt={"recipe"} />
           </Container>
-          {!bool && stepList.length > 0 && (
+          {!bool && steps[0][1][0][0] !== '' && (
             <Container className="hideshow">
               <Button onClick={click}>show instructions</Button>
             </Container>
           )}
 
-          {bool && stepList.length > 0 && (
+          {bool && steps[0][1][0][0] !== '' && (
             <Container className={"instructions"}>
-              <Instruccions array={stepList} action={click} />
+              <Instruccions array={steps} action={click} />
             </Container>
           )}
         </div>
       </>
     );
+  } else if (details["message"]) {
+    return <Errorhandler />;
+  } else return <Loading />;
 };
 
 const Container = styled.div`

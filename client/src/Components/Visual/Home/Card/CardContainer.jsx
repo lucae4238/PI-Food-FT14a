@@ -13,24 +13,21 @@ import NoResultsSearch from "../NoResults/NoResultsSearch";
 const CardContainer = () => {
   const loading = useSelector((state) => state.loading);
   const recipes = useSelector((state) => state.recipesLoaded);
-  const page = useSelector((state) => state.pageReference);
-  const reference = useSelector((state) => state.reference);
   const recipesUnfiltered = useSelector((state) => state.recipesUnfiltered);
+  const reference = useSelector((state) => state.reference);
+  const page = useSelector((state) => state.pageReference);
 
   let index = page * 9;
   let end = index + 9;
   let results =
-    recipes === [] || !Array.isArray(recipes) ? [] : recipes.slice(index, end);
+    (recipes === [] || !Array.isArray(recipes)) ? [] : recipes.slice(index, end);
 
   return (
     <>
       {recipesUnfiltered.length > 0 &&
         reference !== "" &&
         results.length === 0 && (
-          <>
-            <div></div>
             <NoResultsFilter />
-          </>
         )}
 
       <Container>
@@ -64,7 +61,7 @@ export default CardContainer;
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: repeat(auto-fit, 1fr);
   height: max-content;
 
   @media (max-width: 1200px) {

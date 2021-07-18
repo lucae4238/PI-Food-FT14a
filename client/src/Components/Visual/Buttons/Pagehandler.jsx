@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { setPageReference } from '../../Redux/actions';
 import Container from "../../Styles/buttons";
-import PageButton from "./TemplateButton";
+import PageButton from "./ActionButton";
 import CenterButtons from "../../Styles/centerButtons";
 
 

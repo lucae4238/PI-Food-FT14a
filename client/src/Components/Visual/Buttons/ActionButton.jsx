@@ -1,12 +1,11 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import useHistoryDistpatch from '../../Custom Hooks/useHistoryDispatch';
 import Container from '../../Styles/buttons'
-import { useHistory } from 'react-router';
+
 
 const Template = ({action,arg,inner}) => {
  
-    const dispatch = useDispatch();
-    const history = useHistory()
+    const [history, dispatch] = useHistoryDistpatch()
 
     const handleClick = () => {
         if( action){

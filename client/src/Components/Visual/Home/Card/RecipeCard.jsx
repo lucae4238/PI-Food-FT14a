@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import DynamicColor from "../../../Styles/DynamicColor";
-
-const RecipeCard = ({ name = 0, img, id, diets = [], score }) => {
+import PropTypes from 'prop-types';
+const RecipeCard = ({ name, img, id, diets, score}) => {
   let formated = [];
   diets.map((e) => formated.push(" • ", e));
 
@@ -23,6 +23,19 @@ const RecipeCard = ({ name = 0, img, id, diets = [], score }) => {
     </Container>
   );
 };
+
+RecipeCard.propTypes= {
+  name: PropTypes.string,
+  score: PropTypes.number,
+  diets: PropTypes.array,
+  img: PropTypes.any.isRequired,
+  id: PropTypes.any.isRequired,
+}
+
+RecipeCard.defaultProps = {
+  diets: [],
+  score: 0,
+}
 
 const More = styled.div`
   display: flex;

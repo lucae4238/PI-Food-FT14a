@@ -1,12 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
 import styled from "styled-components";
+import useHistoryDistpatch from "../../../Custom Hooks/useHistoryDispatch";
 import { filterDiet } from "../../../Redux/actions";
 
 const DietsFilter = ({ diet }) => {
-  const history = useHistory();
-  const dispatch = useDispatch();
+  const [history, dispatch] = useHistoryDistpatch();
 
   const filter = () => {
     dispatch(filterDiet(diet));

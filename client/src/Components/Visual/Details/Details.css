@@ -32,7 +32,7 @@ html{
   
   .summary{
     /* background: red; */
-    
+    padding: 0.5rem;
     font-size: 20px;
     grid-area: summary;
     white-space: pre-line;

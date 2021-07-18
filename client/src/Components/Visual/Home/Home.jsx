@@ -9,6 +9,9 @@ import Loading from "./Loading";
 import Head from "../../Styles/Head";
 
 
+
+
+
 export const Home = () => {
   const reference = useSelector((state) => state.reference);
   const recipesUnfiltered = useSelector((state) => state.recipesUnfiltered);
@@ -27,13 +30,12 @@ export const Home = () => {
       <Div>
         <LinkButton to="/makeRecipe" inner={"make your own"} className="link" />
       </Div>
-
       <SearchBar />
       {recipesUnfiltered.length === 0 && reference === "" && !loading && (
         <StartSearching />
       )}
-      {loading ? <Loading /> : <CardContainer />}
-    </Container>
+      {loading ? <Loading /> : <CardContainer/>}
+    </Container> 
   );
 };
 

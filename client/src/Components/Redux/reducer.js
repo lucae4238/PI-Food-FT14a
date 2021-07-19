@@ -27,6 +27,7 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         recipeDetails: action.payload,
+        loading:false
       };
     case GET_TYPES:
 
@@ -53,12 +54,10 @@ export function reducer(state = initialState, action) {
         }
 
       case SORT_NAME: 
-      console.log('here')
       return {
         ...state, 
         recipesLoaded: sortByName(action.payload, state.recipesLoaded),
         pageReference: 0
-
       }
 
       case SORT_SCORE:

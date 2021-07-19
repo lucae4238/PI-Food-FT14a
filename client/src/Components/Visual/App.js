@@ -3,7 +3,7 @@ import "./App.css";
 import Form from "./Form/Form";
 import GetStarted from "./GetStarted";
 import { Home } from "../Visual/Home/Home";
-import DetailsRecipes from "./Details/DetailsRecipesMain";
+import MainDetails from "./Details/MainDetails";
 // import Top from "./Top";
 import Errorhandler from "./Errorhandler";
 import { ThemeProvider } from "styled-components";
@@ -18,7 +18,7 @@ function App() {
       <Route exact path="/" component={GetStarted}/>
       <Route exact path="/home" component={Home} />
       <Route path="/makeRecipe" component={Form} />
-      <Route path='/recipe/:id' component={DetailsRecipes} />
+      <Route path='/recipe/:id' component={MainDetails} />
       <Route component={Errorhandler} />
       </Switch>
       </ThemeProvider>

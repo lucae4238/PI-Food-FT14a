@@ -7,6 +7,7 @@ const RecipeCard = ({ name, img, id, diets, score}) => {
   let formated = [];
   diets.map((e) => formated.push(" • ", e));
 
+
   return (
     <Container img={img}>
       <Link to={`/recipe/${id}`}>
@@ -24,17 +25,21 @@ const RecipeCard = ({ name, img, id, diets, score}) => {
   );
 };
 
+
+
 RecipeCard.propTypes= {
-  name: PropTypes.string,
-  score: PropTypes.number,
+
+  name: PropTypes.string.isRequired,
+  score: PropTypes.string.isRequired,
   diets: PropTypes.array,
   img: PropTypes.any.isRequired,
   id: PropTypes.any.isRequired,
+
 }
 
 RecipeCard.defaultProps = {
   diets: [],
-  score: 0,
+  score: '0',
 }
 
 const More = styled.div`

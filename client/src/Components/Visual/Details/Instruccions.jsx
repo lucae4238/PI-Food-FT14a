@@ -8,15 +8,15 @@ const Instruccions = ({ array, action }) => {
       {array.map((el) =>
         el.map((el, index) =>
           index === 0 ? (
-            <Container>
+            <Container key={index * 32}>
               <h3>{el || "instructions"}</h3>
               <Button onClick={action}> Hide</Button>
             </Container>
           ) : (
             el.map(
-              (el) =>
+              (el, index) =>
                 el[1] !== "" && (
-                  <Container2>
+                  <Container2 key={index * 64}>
                     <h5>
                       {el[0]} {el[1]}
                     </h5>

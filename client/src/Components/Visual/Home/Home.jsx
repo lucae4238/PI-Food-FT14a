@@ -8,10 +8,6 @@ import StartSearching from "./StartSearching";
 import Loading from "./Loading";
 import Head from "../../Styles/Head";
 
-
-
-
-
 export const Home = () => {
   const reference = useSelector((state) => state.reference);
   const recipesUnfiltered = useSelector((state) => state.recipesUnfiltered);
@@ -28,14 +24,14 @@ export const Home = () => {
         <h1>{title} Recipes</h1>
       </Head>
       <Div>
-        <LinkButton to="/makeRecipe" inner={"make your own"} className="link" />
+        <LinkButton to="/makeRecipe" inner={"make your own"} />
       </Div>
       <SearchBar />
       {recipesUnfiltered.length === 0 && reference === "" && !loading && (
         <StartSearching />
       )}
-      {loading ? <Loading /> : <CardContainer/>}
-    </Container> 
+      {loading ? <Loading /> : <CardContainer />}
+    </Container>
   );
 };
 
@@ -45,8 +41,6 @@ width:100%;
 overflow-y: scroll;
 height: 100vh;
 min-height: 45em;
-
-
 `;
 
 let Div = s.div`

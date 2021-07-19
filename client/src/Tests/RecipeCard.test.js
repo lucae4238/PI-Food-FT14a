@@ -8,7 +8,7 @@ xdescribe("<RecipeCard/>", () => {
     beforeEach(() => {
       render(
         <MemoryRouter>
-          <RecipeCard name="it title" />
+          <RecipeCard name="it title" img='a' id='3'/>
         </MemoryRouter>
       );
     });
@@ -21,6 +21,7 @@ xdescribe("<RecipeCard/>", () => {
     it("renders 0 as score by default", () => {
       screen.getByText("0");
     });
+    
   });
 
 
@@ -28,7 +29,7 @@ xdescribe("<RecipeCard/>", () => {
     beforeEach(() => {
       render(
         <MemoryRouter>
-          <RecipeCard name="it title" score='75' diets={["dairy free", "vegan"]}/>
+          <RecipeCard name="it title" score='75' diets={["dairy free", "vegan"]} img='a' id='3'/>
         </MemoryRouter>
       );
     });

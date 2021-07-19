@@ -5,14 +5,15 @@ import { getTypes } from "../Redux/actions";
 
 
 function useDiets (){
-    const dispatch = useDispatch()
-    const dietsLoaded = useSelector(state => state.dietsLoaded)
-
-    useEffect(() => {
+  const dispatch = useDispatch()
+  const dietsLoaded = useSelector(state => state.dietsLoaded)
+  
+  useEffect(() => {
         dispatch(getTypes())
       }, [dispatch]);
 
       return dietsLoaded
+
 }
 
 export default useDiets

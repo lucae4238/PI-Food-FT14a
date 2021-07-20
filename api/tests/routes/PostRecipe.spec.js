@@ -6,7 +6,7 @@ const { Recipe, conn } = require("../../src/db.js");
 
 const agent = session(app);
 
-xdescribe("POST /recipe", () => {
+describe("POST /recipe", () => {
     beforeEach(() =>
     Recipe.sync({ force: true })
   );

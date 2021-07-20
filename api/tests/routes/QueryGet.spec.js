@@ -10,7 +10,7 @@ const recipe = {
   summary: "summary",
 };
 
-xdescribe("GET /recipes?name=", () => {
+describe("GET /recipes?name=", () => {
   before(() =>
     conn.authenticate().catch((err) => {
       console.error("Unable to connect to the database:", err);

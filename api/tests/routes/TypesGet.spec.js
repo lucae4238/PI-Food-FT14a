@@ -7,7 +7,7 @@ const { Diet } = require("../../src/db.js");
 const agent = session(app);
 
 
-xdescribe('GET /types' , () => {
+describe('GET /types' , () => {
 
     beforeEach(() =>
     Diet.sync({ force: true }).then( () => Diet.create({name: 'fodmap friendly'}))

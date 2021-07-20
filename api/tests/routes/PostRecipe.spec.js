@@ -6,15 +6,15 @@ const { Recipe, conn } = require("../../src/db.js");
 
 const agent = session(app);
 
-describe("POST /recipe", () => {
+xdescribe("POST /recipe", () => {
     beforeEach(() =>
     Recipe.sync({ force: true })
   );
 
-    xit("should respond with 201", () =>
+    it("should respond with 201", () =>
     agent.post("/recipe").send({ name: "test", summary: "sum" }).expect(201));
 
-  xit("should respond with created Recipe", () =>
+  it("should respond with created Recipe", () =>
     agent
       .post("/recipe")
       .send({ name: "test", summary: "sum" })
@@ -23,7 +23,7 @@ describe("POST /recipe", () => {
         expect(res.body).to.have.include.keys("name", "id", "image")
       ));
 
-  xit("should respond with 400 and shouldnt POST if theres no name / summary", () =>
+  it("should respond with 422 and shouldnt POST if theres no name / summary", () =>
     agent
       .post("/recipe")
       .send({ name: "test" })
@@ -31,7 +31,7 @@ describe("POST /recipe", () => {
       .then((res) => {
         expect(res.text).to.be.equal('{"message":"name and summary required"}');
       }));
-  xit("should respond with 400 and shouldnt POST if theres invalid score / healthScore", () =>
+  it("should respond with 422 and shouldnt POST if theres invalid score / healthScore", () =>
     agent
       .post("/recipe")
       .send({ name: "test", summary: "sum", score: 200 })
@@ -42,12 +42,12 @@ describe("POST /recipe", () => {
         );
       }));
 
-  xit("if score/healtScore is undefined it should assing 0", () => {
-    return agent
+  it("if score/healtScore is undefined it should assing 0", () => 
+     agent
       .post("/recipe")
       .send({ name: "test", summary: "sum" })
       .then((res) => {
         expect(res.body.score).to.be.equal(0);
-      });
-  });
+      })
+  );
 });

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "../../Styles/buttons";
+import PropTypes from 'prop-types';
 
 const Instruccions = ({ array, action }) => {
   return (
@@ -29,6 +30,12 @@ const Instruccions = ({ array, action }) => {
     </Div>
   );
 };
+
+Instruccions.propTypes= {
+
+  array: PropTypes.array.isRequired,
+  action: PropTypes.func.isRequired,
+}
 
 const Container = styled.div`
   display: flex;

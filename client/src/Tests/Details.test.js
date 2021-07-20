@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 import React from "react";
-import { Container } from "../Components/Visual/Details/DetailsContainer";
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import DetailsContainer from "../Components/Visual/Details/DetailsContainer";
 
@@ -37,15 +36,15 @@ describe("<RecipeCard/>", () => {
       );
     });
 
-    xit("renders title and summary correctly", () => {
+    it("renders title and summary correctly", () => {
       screen.getByText("TITLE");
       screen.getByText("summary");
     });
-    xit("renders score and healthScore correctly", () => {
+    it("renders score and healthScore correctly", () => {
       screen.getByText("User score: 3");
       screen.getByText("Health score: 4");
     });
-    xit("renders show instructions by default", () => {
+    it("renders show instructions by default", () => {
       let show = screen.queryByText("show instructions");
       let hide = screen.queryByText("Hide");
       expect(hide).not.toBeInTheDocument();
@@ -64,9 +63,8 @@ describe("<RecipeCard/>", () => {
     it('renders dish types correctly', () => {
       screen.getByText('free food •')
     })
-
   });
-  xdescribe('instructions', () => {
+  describe('instructions', () => {
     beforeEach(() => {
       render(
         <MemoryRouter>

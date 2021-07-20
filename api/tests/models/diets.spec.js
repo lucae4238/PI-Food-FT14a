@@ -1,7 +1,7 @@
 const { Diet, conn } = require("../../src/db.js");
 const { expect } = require("chai");
 
-xdescribe("Diet model", async () => {
+describe("Diet model", async () => {
   before(() =>
     conn.authenticate().catch((err) => {
       console.error("Unable to connect to the database:", err);

@@ -28,7 +28,12 @@ html{
     /* background: grey; */
     margin: 0;
     grid-area: title;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.1fr;
   }
+
+  
   
   .summary{
     /* background: red; */

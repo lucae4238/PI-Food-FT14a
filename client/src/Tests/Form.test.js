@@ -28,7 +28,7 @@ diets.forEach((diet) => {
   dietList[diet.name] = false;
 });
 
-xdescribe("<Form/>", () => {
+describe("<Form/>", () => {
   describe("default", () => {
     beforeEach(() => {
       const handleClick = jest.fn();

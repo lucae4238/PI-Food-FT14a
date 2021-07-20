@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import useHistoryDistpatch from "../../../Custom Hooks/useHistoryDispatch";
 import { filterDiet } from "../../../Redux/actions";
+import PropTypes from "prop-types";
 
 const DietsFilter = ({ diet }) => {
   const [history, dispatch] = useHistoryDistpatch();
@@ -13,6 +14,13 @@ const DietsFilter = ({ diet }) => {
 
   return <Button onClick={filter}>{diet}</Button>;
 };
+
+
+DietsFilter.protoTypes ={
+  diet: PropTypes.string.isRequired
+}
+
+
 
 const Button = styled.button`
   border-radius: ${(props) => props.theme.glassBorderRadius};

@@ -98,10 +98,10 @@ const FormContainer = ({handleSubmit,handleSubmissionChange, handleCheckboxChang
                 )}
               </div>
               <div className="addStep">
-                <Add as="div" onClick={addStep}>
+                <Add type='button'onClick={addStep}>
                   Add Step
                 </Add>
-                <Add as="div" onClick={removeStep}>
+                <Add type='button' onClick={removeStep}>
                   Remove Step
                 </Add>
               </div>

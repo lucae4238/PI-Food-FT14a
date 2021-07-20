@@ -42,6 +42,7 @@ var paleolithic = Diet.create({name: 'paleolithic',})
 var primal = Diet.create({name: 'primal',})
 var whole30 = Diet.create({name: 'whole 30',})
 var foodmap = Diet.create({name: 'fodmap friendly',})
+var dairy = Diet.create({name: 'dairy free',})
 
 
 
@@ -49,7 +50,7 @@ var foodmap = Diet.create({name: 'fodmap friendly',})
 
 
 Promise.all([glutenFree, Ketogenic, lactoVegetarian,ovoVegetarian,
-             vegan,pescetarian,paleo,primal,whole30,lactoOvoVegetarian,paleolithic,foodmap])
+             vegan,pescetarian,paleo,primal,whole30,lactoOvoVegetarian,paleolithic,foodmap,dairy])
   .then(res => {
     console.log("Dietas precargadas");
   });

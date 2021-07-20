@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import RecipeCard from "../Components/Visual/Home/Card/RecipeCard";
 
-xdescribe("<RecipeCard/>", () => {
+describe("<RecipeCard/>", () => {
   describe("default", () => {
     beforeEach(() => {
       render(

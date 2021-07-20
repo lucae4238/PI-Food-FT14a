@@ -21,15 +21,15 @@ xdescribe("GET /recipes?name=", () => {
     Recipe.sync({ force: true }).then(() => Recipe.create(recipe))
   );
 
-  xit("should get 200", () => agent.get("/recipes?name=milanesa").expect(200));
+  it("should get 200", () => agent.get("/recipes?name=milanesa").expect(200));
 
-  it("shoud get 400 if theres no query parameter", () => {
-    return agent.get("/recipes").then((res) => {
+  it("shoud get 400 if theres no query parameter", () => 
+     agent.get("/recipes").then((res) => {
       expect(res.body).to.be.deep.equal({
         message: "must send a valid name in query",
       });
-    });
-  });
+    })
+  );
 
   it("should return an array of results", () =>
     agent
@@ -51,14 +51,14 @@ xdescribe("GET /recipes?name=", () => {
       );
     }));
 
-  xit("should return error message if theres no results", () => {
-    return agent
+  it("should return error message if theres no results", () => 
+     agent
       .get("/recipes?name=mdasda")
       .expect(200)
       .then((res) => {
         expect(res.body).to.be.deep.equal({
           message: "couldnt find any results",
         });
-      });
-  });
+      })
+  );
 });

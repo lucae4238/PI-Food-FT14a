@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../Styles/buttons";
-import Head from "../Styles/Head";
+import Button from "../../Styles/buttons";
+import Head from "../../Styles/Head";
 import './GetStarted.css'
 
 

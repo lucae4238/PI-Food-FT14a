@@ -1,7 +1,7 @@
 const { Recipe } = require("../../src/db.js");
 const { expect } = require("chai");
 
-xdescribe("Recipe Model", function () {
+describe("Recipe Model", function () {
   let RecipeTest;
   beforeEach(async function () {
     await Recipe.sync({ force: true });
